@@ -1,0 +1,12 @@
+<?php $this->partial('partials/publicHeader'); ?>
+<div class="login_form">
+    <form name="login" method="POST" action="/session/login/">
+        <?php echo $form->render('username') . "\n"; ?>
+        <?php echo $form->render('password') . "\n"; ?>
+        <div id="login_controls">
+            <?php echo $form->render('Login') . "\n"; ?>
+            <a id="register" href="register/">Register</a>
+        </div>
+    </form>
+    <p><?php $this->flashSession->output(); ?></p>
+</div>

@@ -1,0 +1,46 @@
+<?php $this->partial('partials/memberHeader'); ?>
+<div>
+    <?php echo $this->flashSession->output(); ?>
+    <div id="edit_list">
+        <form name="edit_list" method="post" action="saveTitle">
+            <label for="current_title">Current Title: </label>
+            <input id="current_title" name="list_title" type="text" value="<?php echo $list->title; ?>" disabled>
+
+            <label for="new_title">New Title: </label>
+            <input id="new_title" name="new_title" type="text" placeholder="Enter new title">
+            <input name="list_id" value="<?php echo $list->id; ?>" hidden>
+            <input class="btn btn-primary pull-right" type="submit" value="Save">
+        </form>
+    </div>
+    <div>
+        <h3>Members of this list</h3>
+        <div>
+            <table>
+                <!-- TODO add table header -->
+                <?php
+
+                $html = '';
+
+                if(count($members) < 1) {
+
+                    $html .= '<p>There are no members to this list yet</p>' . "\n";
+
+                } else {
+
+                    foreach($members as $member) {
+
+                        $html .= '<tr>' . "\n";
+                        $html .= '<td><span id="i' . $member['user_id'] . '">' . $member['username'] . '</span></td>' . "\n";
+                        $html .= '<td><button class="btn btn-danger btn-small delete_member"><i class="icon-white icon-remove"></i></button></td>' . "\n";
+                        $html .= '</tr>' . "\n";
+
+                    }
+
+                }
+
+                echo $html;
+
+                ?>
+            </table>
+        </div>
+    </div>

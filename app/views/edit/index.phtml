@@ -1,0 +1,42 @@
+<?php $this->partial('partials/memberHeader'); ?>
+<div>
+    <?php echo $this->flashSession->output(); ?>
+    <div id="add_list_form">
+        <form name="add_list" method="post" action="addList">
+            <label for="">Add list: </label>
+            <input type="text" name="list_title" placeholder="New list title">
+            <input class="btn btn-primary" type="submit" value="Add">
+        </form>
+    </div>
+    <div id="lists">
+        <?php
+
+        $html = '';
+        $html .= '<table>' . "\n";
+        //TODO add table header
+
+        foreach($lists as $list) {
+
+            $html .= '<tr>' . "\n";
+            $html .= '<td>' . $list->title . '</td>' . "\n";
+
+            $html .= '<td>' . "\n";
+            $html .= '<form name="edit_list_' . $list->id . '" action="editlist/" method="post">' . "\n";
+            $html .= '<input name="edit_list_id" value="' . $list->id . '" hidden>' . "\n";
+            $html .= '<input id="edit_submit_' . $list->id . '" name="edit_list" type="submit" hidden>' . "\n";
+            $html .= '<label for="edit_submit_' . $list->id . '" class="btn pull-right btn-warning btn-small"><i class="icon-white icon-edit"></i></label>';
+            $html .= '</form>' . "\n";
+
+            $html .= '</td>' . "\n";
+
+            $html .= '<td><button class="btn btn-danger btn-small delete_list pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
+            $html .= '</tr>' . "\n";
+        }
+
+        $html .= '</table>' . "\n";
+
+        echo $html;
+
+        ?>
+    </div>
+</div>

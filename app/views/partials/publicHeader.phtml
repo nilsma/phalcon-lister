@@ -1,0 +1,17 @@
+<header>
+    <div id="logo">
+        <div id="logo_inner">
+            <h1><?php echo \Phalcon\Tag::linkTo('', 'Lister'); ?></h1>
+        </div>
+    </div>
+    <nav>
+        <div id="hamburger_holder">
+            <img id="hamburger" src="../public/img/hamburger_black_small.png" alt="menu trigger image"/>
+        </div>
+        <ul id="nav_list">
+            <li><?php echo Phalcon\Tag::linkTo('', 'Login'); ?></li>
+            <li><?php echo Phalcon\Tag::linkTo('register/', 'Register'); ?></li>
+            <li><?php echo Phalcon\Tag::linkTo('about', 'About'); ?></li>
+        </ul>
+    </nav>
+</header>

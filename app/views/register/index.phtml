@@ -1,0 +1,14 @@
+<?php $this->partial('partials/publicHeader'); ?>
+<div class="login_form">
+    <form name="register" method="POST" action="/session/register/">
+        <?php echo $form->render('username') . "\n"; ?>
+        <?php echo $form->render('email') . "\n"; ?>
+        <?php echo $form->render('password') . "\n"; ?>
+        <?php echo $form->render('repeat') . "\n"; ?>
+        <div id="login_controls">
+            <?php echo $form->render('Register'); ?>
+            <?php echo Phalcon\Tag::linkTo("", "Login"); ?>
+        </div>
+    </form>
+    <p><?php $this->flashSession->output(); ?></p>
+</div>

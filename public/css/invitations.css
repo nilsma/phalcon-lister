@@ -1,0 +1,25 @@
+div#invite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#invite form input[type="submit"] {
+    margin-left: 15px;
+}
+
+table {
+    width: 100%;
+}
+
+table tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+table tr td {
+    padding: 4px 8px;
+}
+
+table tr td:nth-child(2) {
+    width: 50px;
+}

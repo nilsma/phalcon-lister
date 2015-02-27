@@ -1,0 +1,22 @@
+<header>
+    <div id="welcome">
+        <p>Logged in as <span><?php echo $user->username; ?></span></p>
+    </div>
+    <div id="brand">
+        <div id="logo">
+            <h1><?php echo \Phalcon\Tag::linkTo('member/', 'Lister'); ?></h1>
+        </div>
+        <nav>
+            <div id="hamburger_holder">
+                <img id="hamburger" src="../public/img/hamburger_black_small.png" alt="menu trigger image"/>
+            </div>
+            <ul id="nav_list">
+                <li><?php echo Phalcon\Tag::linkTo('member/', 'My Lists'); ?></li>
+                <li><?php echo Phalcon\Tag::linkTo('profile/', 'My Profile'); ?></li>
+                <li><?php echo Phalcon\Tag::linkTo('edit/', 'Edit Lists'); ?></li>
+                <li><?php echo Phalcon\Tag::linkTo('invitations/', 'Invitations'); ?></li>
+                <li><a href="#" onclick="return logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

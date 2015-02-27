@@ -1,0 +1,19 @@
+div#change_password,
+div#change_password form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#change_email,
+div#change_email form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#change_password input:last-child,
+div#change_email input:last-child {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

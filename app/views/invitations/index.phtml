@@ -1,0 +1,141 @@
+<?php $this->partial('partials/memberHeader'); ?>
+<div>
+    <?php echo $this->flashSession->output(); ?>
+    <div id="invite">
+        <h3>Create new invitation</h3>
+        <?php
+
+        $html = '';
+
+        $html .= '<form name="new_invitation" action="inviteUser" method="post">' . "\n";
+        $html .= '<label for="invite_username">User to invite: </label>' . "\n";
+        $html .= '<input id="invite_username" type="text" name="invite_username" placeholder="Enter username to invite">' . "\n";
+
+        $html .= '<p>List to invite to: </p>' . "\n";
+        $html .= '<select id="list" name="list">' . "\n";
+
+        foreach($lists as $list) {
+
+            if($list->id == $user->last_list) {
+
+                $html .= '<option value="' . $list->id . '" selected>' . $list->title . '</option>' . "\n";
+
+            } else {
+
+                $html .= '<option value="' . $list->id . '">' . $list->title . '</option>' . "\n";
+
+            }
+
+        }
+
+        $html .= '</select>' . "\n";
+        $html .= '<input class="btn btn-primary pull-right" name="submit_invite" type="submit" value="Invite">' . "\n";
+        $html .= '</form>' . "\n";
+
+        echo $html;
+
+        ?>
+    </div>
+    <div id="invited">
+        <h3>Your invitations</h3>
+        <?php
+
+        $html = '';
+
+        $html .= '<table>' . "\n";
+        //TODO add table head
+
+        if(count($invited) < 1) {
+
+            $html .= '<tr>' . "\n";
+            $html .= '<td>There are no invitations for you at the moment</td>' . "\n";
+            $html .= '</tr>' . "\n";
+
+        } else {
+
+            foreach($invited as $inv) {
+
+                $html .= '<tr>' . "\n";
+                $html .= '<td>You have been invited by ' . $inv['username'] . ' to the list <span id="i' . $inv['list_id'] . '">' . $inv['list_title'] . '</span></td>' . "\n";
+                $html .= '<td><button class="btn btn-danger btn-small delete_invited pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
+                $html .= '</tr>' . "\n";
+
+            }
+
+        }
+
+        $html .= '</table>' . "\n";
+
+        echo $html;
+
+        ?>
+    </div>
+    <div id="memberships">
+        <h3>Your memberships</h3>
+        <?php
+
+        $html = '';
+
+        $html .= '<table>' . "\n";
+        //TODO add table head
+
+        if(count($memberships) < 1) {
+
+            $html .= '<tr>' . "\n";
+            $html .= '<td>You are not yet member of any lists</td>' . "\n";
+            $html .= '</tr>' . "\n";
+
+        } else {
+
+            foreach($memberships as $m) {
+
+                $html .= '<tr>' . "\n";
+                $html .= '<td>You are currently subscribing to ' . $m['username'] . '\'s list <span id="i' . $m['list_id'] . '">' . $m['list_title'] . '</span></td>' . "\n";
+                $html .= '<td><button class="btn btn-danger btn-small delete_membership pull-right"><i class="icon-white icon-remove"></i> </button></td>'. "\n";
+                $html .= '</tr>' . "\n";
+
+            }
+
+        }
+
+        $html .= '</table>' . "\n";
+
+        echo $html;
+
+        ?>
+    </div>
+    <div id="inviter">
+        <h3>Others invitations</h3>
+        <?php
+
+        $html = '';
+
+        $html .= '<table>' . "\n";
+        //TODO add table head
+
+        if(count($inviter) < 1) {
+
+            $html .= '<tr>' . "\n";
+            $html .= '<td>You have not invited anyone to any lists at the moment</td>' . "\n";
+            $html .= '</tr>' . "\n";
+
+        } else {
+
+            foreach($inviter as $i) {
+
+                $html .= '<tr>' . "\n";
+                $html .= '<td>You have invited <span id="i' . $i['user_id'] . '">' . $i['username'] . '</span> to your list <span id="i' . $i['list_id'] . '">' . $i['list_title'] . '</span>' . "\n";
+                $html .= '<td><button class="btn btn-danger btn-small delete_inviter pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
+                $html .= '</tr>' . "\n";
+
+            }
+
+        }
+
+        $html .= '</table>' . "\n";
+
+        echo $html;
+
+        ?>
+    </div>
+</div>

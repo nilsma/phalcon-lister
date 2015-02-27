@@ -1,0 +1,54 @@
+div#lists {
+    text-align: center;
+}
+
+.untapped,
+.untapped + td {
+    background-color: darkseagreen;
+}
+
+.tapped,
+.tapped + td {
+    background-color: indianred;
+}
+
+.tapped:hover,
+.untapped:hover,
+.tapped:hover + td,
+.untapped:hover + td {
+    background-color: lightgray;
+}
+
+td.item_title:active {
+    background-color: white;
+}
+
+.item_hover {
+    background-color: lightgray;
+}
+
+div#items td {
+    border: 1px solid black;
+    padding: 4px 8px;
+    width: 100%;
+}
+
+div#items td.item_title:hover {
+    cursor: pointer;
+}
+
+div#items_container {
+    margin-bottom: 30px;
+}
+
+input[type="submit"] {
+    margin-top: -10px;
+    margin-left: 15px;
+}
+
+div#item_input form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

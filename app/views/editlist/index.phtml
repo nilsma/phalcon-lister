@@ -9,38 +9,42 @@
             <label for="new_title">New Title: </label>
             <input id="new_title" name="new_title" type="text" placeholder="Enter new title">
             <input name="list_id" value="<?php echo $list->id; ?>" hidden>
-            <input class="btn btn-primary pull-right" type="submit" value="Save">
+            <div id="edit_controls">
+                <input class="btn btn-success" type="submit" value="Save">
+                <a class="btn btn-danger" id="cancel" href="/edit/">Cancel</a>
+            </div>
         </form>
     </div>
-    <div>
+    <div id="members">
         <h3>Members of this list</h3>
         <div>
-            <table>
-                <!-- TODO add table header -->
-                <?php
+            <?php
 
-                $html = '';
+            $html = '';
 
-                if(count($members) < 1) {
+            if(count($members) < 1) {
 
-                    $html .= '<p>There are no members to this list yet</p>' . "\n";
+                $html .= '<p>There are no members to this list yet</p>' . "\n";
 
-                } else {
+            } else {
 
-                    foreach($members as $member) {
+                $html .= '<table>' . "\n";
 
-                        $html .= '<tr>' . "\n";
-                        $html .= '<td><span id="i' . $member['user_id'] . '">' . $member['username'] . '</span></td>' . "\n";
-                        $html .= '<td><button class="btn btn-danger btn-small delete_member"><i class="icon-white icon-remove"></i></button></td>' . "\n";
-                        $html .= '</tr>' . "\n";
+                foreach($members as $member) {
 
-                    }
+                    $html .= '<tr>' . "\n";
+                    $html .= '<td><span id="i' . $member['user_id'] . '">' . $member['username'] . '</span></td>' . "\n";
+                    $html .= '<td><button class="btn btn-danger btn-small delete_member pull-right"><i class="icon-white icon-remove"></i></button></td>' . "\n";
+                    $html .= '</tr>' . "\n";
 
                 }
 
-                echo $html;
+                $html .= '</table>' . "\n";
 
-                ?>
-            </table>
+            }
+
+            echo $html;
+
+            ?>
         </div>
     </div>

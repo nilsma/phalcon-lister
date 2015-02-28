@@ -47,14 +47,29 @@ function toggleHightlightItemAction() {
 }
 
 function toggleMenu() {
-    $("nav ul").toggle();
+    var el = document.getElementById('nav_list');
+    var nav = document.getElementById('hamburger_holder');
+    if(window.getComputedStyle(el, null).getPropertyValue('display') === 'none') {
+        el.style.display='block';
+        document.addEventListener('click', closeMenuHandler);
+    } else {
+        el.style.display='none';
+    }
 }
 
+function closeMenuHandler(e) {
+    var el = document.getElementById('nav_list');
+    var clicked = e.target.id;
+    if(clicked !== 'hamburger') {
+        el.style.display='none';
+        document.removeEventListener('click', closeMenuHandler);
+    }
+}
 
 function logout() {
     var logout = confirm('Are you sure you want to logout?');
     if(logout) {
-        window.location = '../logout';
+        window.location = '/logout';
     }
 
     return false;
@@ -288,18 +303,33 @@ function deleteItem(list_id, item_id, callback) {
     var param1 = "list_id=".concat(list_id);
     var param2 = "&item_id=".concat(item_id);
     var params = param1.concat(param2);
-    xmlhttp.open("POST", "../member/deleteItem", true);
+    xmlhttp.open("POST", "/member/deleteItem", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(params);
 }
 
+function selectList() {
+    $(this).on('change', function() {
+        var value = $(this).val();
+        var location = '/member/list/'.concat(value).concat('/');
+        window.location.href = location;
+    });
+}
+
 function addListeners(elements, funcName) {
     for(var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('click', funcName, false);
+        if(elements[i] !== null) {
+            elements[i].addEventListener('click', funcName, false);
+        }
     }
 }
 
 function init() {
+    var element = document.getElementById('select_list');
+    if(element !== null) {
+        element.addEventListener('click', selectList);
+    }
+
     var elements = document.getElementsByClassName('item_action');
     for(var i = 0; i < elements.length; i++) {
         elements[i].addEventListener('mouseover', toggleHightlightItemAction);

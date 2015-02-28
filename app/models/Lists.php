@@ -31,26 +31,6 @@ class Lists extends \Phalcon\Mvc\Model
     public function initialize()
     {
 
-        /*
-        $this->hasMany('id', 'Invitations', 'list_id', array(
-            'foreignKey' => array(
-                'action' => Relation::ACTION_CASCADE
-            )
-        ));
-
-        $this->hasMany('id', 'Items', 'list_id', array(
-            'foreignKey' => array(
-                'action' => Relation::ACTION_CASCADE
-            )
-        ));
-
-        $this->hasMany('id', 'Members', 'list_id', array(
-            'foreignKey' => array(
-                'action' => Relation::ACTION_CASCADE
-            )
-        ));
-        */
-
         $this->hasMany('id', 'Invitations', 'list_id', NULL);
         $this->hasMany('id', 'Items', 'list_id', NULL);
         $this->hasMany('id', 'Members', 'list_id', NULL);

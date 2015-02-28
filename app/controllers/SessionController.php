@@ -4,9 +4,9 @@ class SessionController extends \Phalcon\Mvc\Controller {
 
     public function indexAction() {
         if($this->session->has('auth')) {
-            $this->response->redirect('member/');
+            $this->response->redirect('/member/list/');
         } else {
-            $this->response->redirect('member/');
+            $this->response->redirect('/member/list/');
         }
     }
 

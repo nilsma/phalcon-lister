@@ -1,14 +1,24 @@
+div#edit_controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5px auto;
+}
+
 div#edit_list {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-div#edit_list input[type="submit"] {
-    margin-left: 15px;
+div#members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 table {
+    min-width: 360px;
     width: 100%;
 }
 

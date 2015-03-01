@@ -26,7 +26,7 @@ function tapItemHTML(element, tapped) {
 function tapItemDB(item_id, tapped, callback) {
     $.ajax({
         type: "POST",
-        url: "tapItem",
+        url: "/member/tapItem",
         data: {id: item_id, tap: tapped}
     }).done(function(result) {
         callback(result);

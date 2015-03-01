@@ -1,9 +1,7 @@
 function toggleHightlightItemAction() {
     if($(this).parent().parent().hasClass('item_hover')) {
-        alert('test');
         $(this).parent().parent().removeClass('item_hover');
     } else {
-        alert('test');
         $(this).parent().parent().addClass('item_hover');
     }
 }

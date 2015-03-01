@@ -27,19 +27,9 @@ table {
     width: 100%;
 }
 
-.item_hover {
+div#items div#items_container table tr.item_hover {
     background-color: #ddd;
 }
-
-/*
-table tr.item_name:hover {
-    background-color: #ddd;
-}
-
-table tr.item_name:active {
-    background-color: #fff;
-}
-*/
 
 table tr:hover {
     cursor: pointer;

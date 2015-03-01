@@ -15,13 +15,40 @@ form input[type="submit"] {
 }
 
 table {
+    background-color: #fff;
+    border-collapse: separate;
+    border-spacing: 0 3px;
     margin-bottom: 40px;
-    width: 100%;
     min-width: 360px;
+    width: 100%;
+}
+
+table tr.item_name:hover {
+    background-color: #ddd;
+}
+
+table tr.item_name:active {
+    background-color: #fff;
+}
+
+table tr:hover {
+    cursor: pointer;
+}
+
+table tr:nth-child(even) {
+    background-color: #fff;
 }
 
 table tr:nth-child(odd) {
     background-color: #ddd;
+}
+
+table tr.tapped {
+    background-color: #d66353;
+}
+
+table tr.untapped {
+    background-color: #9ad677;
 }
 
 table tr td {

@@ -38,14 +38,6 @@ function getItemIdToTap(element, callback) {
     callback(item_id);
 }
 
-function toggleHightlightItemAction() {
-    if($(this).parent().parent().hasClass('item_hover')) {
-        $(this).parent().parent().removeClass('item_hover');
-    } else {
-        $(this).parent().parent().addClass('item_hover');
-    }
-}
-
 function toggleMenu() {
     var el = document.getElementById('nav_list');
     var nav = document.getElementById('hamburger_holder');
@@ -330,16 +322,6 @@ function init() {
         element.addEventListener('click', selectList);
     }
 
-    var elements = document.getElementsByClassName('item_action');
-    for(var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('mouseover', toggleHightlightItemAction);
-    }
-
-    var elements = document.getElementsByClassName('item_action');
-    for(var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener('mouseout', toggleHightlightItemAction);
-    }
-
     var elements = document.getElementsByClassName('item_title');
     addListeners(elements, toggleItemTap);
 
@@ -371,9 +353,11 @@ function init() {
     addListeners(elements, initDeleteList);
 
     //TODO add edit item functionality
+    /*
     var elements = new Array();
     elements = document.getElementsByClassName('edit_item');
     addListeners(elements, initEditItem);
+    */
 }
 
 window.onload = function() {

@@ -27,6 +27,11 @@ table {
     width: 100%;
 }
 
+.item_hover {
+    background-color: #ddd;
+}
+
+/*
 table tr.item_name:hover {
     background-color: #ddd;
 }
@@ -34,6 +39,7 @@ table tr.item_name:hover {
 table tr.item_name:active {
     background-color: #fff;
 }
+*/
 
 table tr:hover {
     cursor: pointer;

@@ -19,6 +19,7 @@ class SessionController extends \Phalcon\Mvc\Controller {
         $password_check = $this->security->checkHash($password, $user->password);
 
         if($user && $password_check) {
+            $this->cookies->set('remember-me', 'some value', time() + 15 * 86400);
             $this->session->set('user', serialize($user));
             $this->session->set('auth', True);
             $this->response->redirect('member/');

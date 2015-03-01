@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
+use Phalcon\Filter as Filter;
 
 class EditController extends ControllerBase
 {
@@ -50,18 +51,22 @@ class EditController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $list_title = $this->request->getPost('list_title');
+            $filter = new Filter();
 
-            if(empty($list_title)) {
+            $list = new Lists();
+
+            $list->id = NULL;
+            $list->owner = $user->id;
+            $list->title = $filter->sanitize($this->request->getPost('list_title'), "string");
+
+            if(empty($list->title)) {
 
                 $this->flash->error('You have to enter a list title');
                 $this->response->redirect('edit/');
 
             } else {
 
-                //TODO check if list with same title already exists
-                $sql = "INSERT INTO Lists VALUES(null, :user_id:, :list_title:)";
-                $this->modelsManager->executeQuery($sql, array('user_id' => $user->id, 'list_title' => $list_title));
+                $list->save();
                 $this->response->redirect('edit/');
 
             }

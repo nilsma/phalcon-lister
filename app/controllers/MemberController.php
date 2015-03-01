@@ -4,6 +4,7 @@ use Phalcon\Forms\Form,
     Phalcon\Forms\Element\Select,
     Phalcon\Forms\Element\Submit,
     Phalcon\Mvc\Model\Query;
+use Phalcon\Filter as Filter;
 
 class MemberController extends ControllerBase
 {
@@ -130,10 +131,13 @@ class MemberController extends ControllerBase
     public function addItemAction() {
 
         if($this->session->has("user") && $this->session->get("auth") == true) {
+
+            $filter = new \Phalcon\Filter();
+
             $user = unserialize($this->session->get("user"));
 
             $list_id = $this->request->getPost('working_list');
-            $item_name = $this->request->getPost('item_to_add');
+            $item_name = $filter->sanitize($this->request->getPost('item_to_add'), "string");
 
             $list = Lists::findFirst(array("list_id" => $list_id));
             $member = Members::findFirst(array("list_id" => $list_id, "user_id" => $user->id));

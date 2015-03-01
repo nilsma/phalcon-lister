@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Filter as Filter;
+
 class ProfileController extends \Phalcon\Mvc\Controller
 {
 
@@ -87,6 +89,8 @@ class ProfileController extends \Phalcon\Mvc\Controller
 
         if($this->request->isPost()) {
 
+            $filter = new Filter();
+
             if($this->session->has("user")) {
                 $user = unserialize($this->session->get("user"));
             } else {
@@ -94,8 +98,8 @@ class ProfileController extends \Phalcon\Mvc\Controller
                 $this->response->redirect('');
             }
 
-            $new_email = $this->request->getPost('new_email');
-            $repeat_email = $this->request->getPost('repeat_email');
+            $new_email = $filter->sanitize($this->request->getPost('new_email'), "email");
+            $repeat_email = $filter->sanitize($this->request->getPost('repeat_email'), "email");
 
             if($new_email == $repeat_email) {
 

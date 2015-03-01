@@ -27,19 +27,23 @@
 
                 ?>
             </select>
-            <!--
-            <input type="submit" value="Load" class="btn btn-primary pull-right" />
-            -->
         </form>
 
     </div>
 
     <div id="items">
         <div id="items_container">
-            <table>
-                <?php
+            <?php
 
-                $html = '';
+            $html = '';
+
+            if(count($items) < 1) {
+
+                $html .= '<p>You haven\'t add any items yet.</p>' . "\n";
+
+            } else {
+
+                $html .= '<table>' . "\n";
 
                 foreach($items as $item) {
                     $item_class = '';
@@ -56,9 +60,13 @@
 
                 }
 
-                echo $html;
+                $html .= '</table>' . "\n";
 
-                ?>
+            }
+
+            echo $html;
+
+            ?>
             </table>
         </div>
         <div id="item_input">

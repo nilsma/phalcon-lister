@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Filter as Filter;
+
 class EditlistController extends ControllerBase
 {
 
@@ -42,8 +44,29 @@ class EditlistController extends ControllerBase
 
         if($this->request->isPost()) {
 
-            $list_id = $this->request->getPost('list_id');
-            $new_title = $this->request->getPost('new_title');
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $filter = new Filter();
+
+            $list = new Lists();
+            $list = Lists::findFirst("id = {$this->request->getPost('list_id')}");
+            $list->title = $filter->sanitize($this->request->getPost('new_title'), "string");
+
+            if(strlen($list->title) > 0) {
+
+                $list->save();
+
+            } else {
+
+                $this->flash->error('Something went wrong setting new title');
+                $this->response->redirect('editlist/');
+
+            }
 
             $sql = "UPDATE Lists SET title=:new_title: WHERE id=:list_id:";
             $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'new_title' => $new_title));

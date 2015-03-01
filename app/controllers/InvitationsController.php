@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Filter as Filter;
+
 class InvitationsController extends ControllerBase
 {
 
@@ -195,7 +197,9 @@ class InvitationsController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $invite_user = Users::findFirst('username = "' . $this->request->getPost('invite_username') . '"');
+            $filter = new Filter();
+
+            $invite_user = Users::findFirst('username = "' . $filter->sanitize($this->request->getPost('invite_username'), "string") . '"');
             $invitation = new Invitations();
 
             $invitation->id = NULL;

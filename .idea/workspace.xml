@@ -76,12 +76,12 @@
       <file leaf-file-name="InvitationsController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/InvitationsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="0" selection-start="3815" selection-end="3815" vertical-scroll-proportion="0.33274022" vertical-offset="2454" max-vertical-offset="6061">
+            <state line="37" column="0" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.8060498" vertical-offset="250" max-vertical-offset="6156">
               <folding>
                 <element signature="e#7#71#0" expanded="true" />
-                <marker date="1425325236573" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
-                <marker date="1425325236573" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
-                <marker date="1425325236573" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
+                <marker date="1425326398641" expanded="true" signature="5308:5381" placeholder="DELETE FROM ..." />
+                <marker date="1425326398641" expanded="true" signature="5982:6051" placeholder="DELETE FROM ..." />
+                <marker date="1425326398641" expanded="true" signature="6675:6748" placeholder="DELETE FROM ..." />
               </folding>
             </state>
           </provider>
@@ -730,12 +730,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/InvitationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="0" selection-start="3815" selection-end="3815" vertical-scroll-proportion="0.33274022" vertical-offset="2454" max-vertical-offset="6061">
+        <state line="37" column="0" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.8060498" vertical-offset="250" max-vertical-offset="6156">
           <folding>
             <element signature="e#7#71#0" expanded="true" />
-            <marker date="1425325236573" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
-            <marker date="1425325236573" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
-            <marker date="1425325236573" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
+            <marker date="1425326398641" expanded="true" signature="5308:5381" placeholder="DELETE FROM ..." />
+            <marker date="1425326398641" expanded="true" signature="5982:6051" placeholder="DELETE FROM ..." />
+            <marker date="1425326398641" expanded="true" signature="6675:6748" placeholder="DELETE FROM ..." />
           </folding>
         </state>
       </provider>

@@ -238,6 +238,8 @@ class InvitationsController extends ControllerBase
 
         if($this->request->isPost()) {
 
+            $this->view->disable();
+
             if($this->session->has("user")) {
                 $user = unserialize($this->session->get("user"));
             } else {
@@ -247,15 +249,59 @@ class InvitationsController extends ControllerBase
 
             $filter = new Filter();
 
-            $invite_user = Users::findFirst('username = "' . $filter->sanitize($this->request->getPost('invite_username'), "string") . '"');
-            $invitation = new Invitations();
+            $list_id = $this->request->getPost('list');
+            $username_to_invite = $filter->sanitize($this->request->getPost('invite_username'), "string");
 
-            $invitation->id = NULL;
-            $invitation->inviter_id = $user->id;
-            $invitation->list_id = $this->request->getPost('list');
-            $invitation->user_id = $invite_user->id;
+            $user_to_invite = Users::findFirst("username = \"{$username_to_invite}\"");
 
-            $invitation->save();
+            $invitations = Invitations::find(array(
+                "conditions" => "inviter_id = ?1 AND list_id = ?2 AND user_id = ?3",
+                "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
+                "limit" => 1
+            ));
+
+            $members = Members::find(array(
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND user_id = ?3",
+                "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
+                "limit" => 1
+            ));
+
+            if(count($invitations) > 0) {
+                $invitation = $invitations[0];
+            } else {
+                $invitation = NULL;
+            }
+
+            if(count($members) > 0) {
+                $member = $members[0];
+            } else {
+                $member = NULL;
+            }
+
+            if($invitation || $member || !$user_to_invite) {
+
+                if($invitation) {
+                    $this->flash->error("{$user_to_invite->username} has already been invited to this list");
+                }
+
+                if($member) {
+                    $this->flash->error("{$user_to_invite->username} is already a member of this list");
+                }
+
+                if(!$user_to_invite) {
+                    $this->flash->error("The user {$username_to_invite} does not exist");
+                }
+
+            } else {
+                $invitation = new Invitations();
+
+                $invitation->id = NULL;
+                $invitation->inviter_id = $user->id;
+                $invitation->list_id = $list_id;
+                $invitation->user_id = $user_to_invite->id;
+
+                $invitation->save();
+            }
 
         }
 

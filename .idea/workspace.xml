@@ -61,15 +61,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="EditlistController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/EditlistController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="36" selection-start="950" selection-end="959" vertical-scroll-proportion="-3.0" vertical-offset="412" max-vertical-offset="2299">
+              <folding>
+                <marker date="1425215546119" expanded="true" signature="2092:2145" placeholder="UPDATE Lists..." />
+                <marker date="1425215546119" expanded="true" signature="2561:2632" placeholder="DELETE FROM ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="InvitationsController.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/InvitationsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="915" selection-end="915" vertical-scroll-proportion="0.22950819" vertical-offset="463" max-vertical-offset="5187">
+            <state line="139" column="0" selection-start="3815" selection-end="3815" vertical-scroll-proportion="0.33274022" vertical-offset="2454" max-vertical-offset="6061">
               <folding>
                 <element signature="e#7#71#0" expanded="true" />
-                <marker date="1425307945912" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
-                <marker date="1425307945912" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
-                <marker date="1425307945912" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
+                <marker date="1425325236573" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
+                <marker date="1425325236573" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
+                <marker date="1425325236573" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
               </folding>
             </state>
           </provider>
@@ -78,7 +90,7 @@
       <file leaf-file-name="index.phtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/invitations/index.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="6" selection-start="4214" selection-end="4214" vertical-scroll-proportion="-15.535714" vertical-offset="2244" max-vertical-offset="2793">
+            <state line="2" column="36" selection-start="92" selection-end="92" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="2793">
               <folding />
             </state>
           </provider>
@@ -618,11 +630,6 @@
         <state line="7" column="41" selection-start="361" selection-end="361" vertical-scroll-proportion="0.24225865" vertical-offset="0" max-vertical-offset="893" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/EditlistController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="55" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.36654803" vertical-offset="1048" max-vertical-offset="2299" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/member.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="0" selection-start="534" selection-end="534" vertical-scroll-proportion="0.7864407" vertical-offset="163" max-vertical-offset="1235" />
@@ -706,19 +713,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invitations/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="6" selection-start="4214" selection-end="4214" vertical-scroll-proportion="-15.535714" vertical-offset="2244" max-vertical-offset="2793">
+        <state line="2" column="36" selection-start="92" selection-end="92" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="2793">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/EditlistController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="36" selection-start="950" selection-end="959" vertical-scroll-proportion="-3.0" vertical-offset="412" max-vertical-offset="2299">
+          <folding>
+            <marker date="1425215546119" expanded="true" signature="2092:2145" placeholder="UPDATE Lists..." />
+            <marker date="1425215546119" expanded="true" signature="2561:2632" placeholder="DELETE FROM ..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/InvitationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="915" selection-end="915" vertical-scroll-proportion="0.22950819" vertical-offset="463" max-vertical-offset="5187">
+        <state line="139" column="0" selection-start="3815" selection-end="3815" vertical-scroll-proportion="0.33274022" vertical-offset="2454" max-vertical-offset="6061">
           <folding>
             <element signature="e#7#71#0" expanded="true" />
-            <marker date="1425307945912" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
-            <marker date="1425307945912" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
-            <marker date="1425307945912" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
+            <marker date="1425325236573" expanded="true" signature="5178:5251" placeholder="DELETE FROM ..." />
+            <marker date="1425325236573" expanded="true" signature="5852:5921" placeholder="DELETE FROM ..." />
+            <marker date="1425325236573" expanded="true" signature="6545:6618" placeholder="DELETE FROM ..." />
           </folding>
         </state>
       </provider>

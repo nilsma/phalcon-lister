@@ -57,6 +57,7 @@
 
                 $html .= '<tr>' . "\n";
                 $html .= '<td>You have been invited by ' . $inv['username'] . ' to the list <span id="i' . $inv['list_id'] . '">' . $inv['list_title'] . '</span></td>' . "\n";
+                $html .= '<td><button class="btn btn-success btn-small accept_invited pull-right"><i class="icon-white icon-ok icon-accept"></i> </button></td>' . "\n";
                 $html .= '<td><button class="btn btn-danger btn-small delete_invited pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
                 $html .= '</tr>' . "\n";
 

@@ -316,6 +316,41 @@ function selectList() {
     });
 }
 
+function initAcceptInvited() {
+    getInvitedListToAccept(this, function(list_id) {
+        acceptInvited(list_id, function() {
+            location.reload();
+        });
+    });
+}
+
+function getInvitedListToAccept(element, callback) {
+    var list_id = element.parentNode.parentNode.childNodes[1].childNodes[1].getAttribute('id').substring(1);
+    callback(encodeURIComponent(list_id));
+}
+
+function acceptInvited(list_id, callback) {
+    var result;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            result = xmlhttp.responseText;
+            callback();
+        }
+    }
+
+    var param = "list_id=".concat(list_id);
+    xmlhttp.open("POST", "acceptInvited", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(param);
+}
+
 function addListeners(elements, funcName) {
     for(var i = 0; i < elements.length; i++) {
         if(elements[i] !== null) {
@@ -356,6 +391,10 @@ function init() {
     var elements = new Array();
     elements = document.getElementsByClassName('delete_invited');
     addListeners(elements, initDeleteInvited);
+
+    var elements = new Array();
+    elements = document.getElementsByClassName('accept_invited');
+    addListeners(elements, initAcceptInvited);
 
     var elements = new Array();
     elements = document.getElementsByClassName('delete_member');

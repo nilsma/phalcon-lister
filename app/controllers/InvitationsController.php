@@ -1,5 +1,6 @@
 <?php
 
+use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 use Phalcon\Filter as Filter;
 
 class InvitationsController extends ControllerBase
@@ -29,7 +30,7 @@ class InvitationsController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $lists = Lists::findLists("owner = {$user->id}");
+            $lists = Lists::find("owner = {$user->id}");
             $inviter = $this->getInvitationsAsInviter($user->id);
             $invited = $this->getInvitationsAsInvited($user->id);
             $memberships = $this->getMemberships($user->id);
@@ -121,6 +122,54 @@ class InvitationsController extends ControllerBase
 
     }
 
+    public function acceptInvitedAction() {
+
+        if($this->request->isPost()) {
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $transactionManager = new TransactionManager();
+            $transaction = $transactionManager->get();
+
+            $list_id = $this->request->getPost('list_id');
+
+            $invitation = Invitations::findFirst(array(
+                "list_id" => $list_id,
+                "user_id" => $user->id
+            ));
+
+            $member = new Members();
+            $member->id = NULL;
+            $member->owner_id = $invitation->inviter_id;
+            $member->list_id = $list_id;
+            $member->user_id = $user->id;
+
+            try {
+
+                if($member->save() == false) {
+                    $transaction->rollback("Failed member save");
+                }
+
+                if($invitation->delete() == false) {
+                    $transaction->rollback("Failed invitation delete");
+                }
+
+            } catch(\Phalcon\Mvc\Model\Transaction\Failed $e) {
+
+                $this->flash->error('Something went wrong with accepting the invitation');
+                $this->response->redirect('');
+
+            }
+
+        }
+
+    }
+
     public function deleteInvitedAction() {
 
         if($this->request->isPost()) {
@@ -139,7 +188,6 @@ class InvitationsController extends ControllerBase
             $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'user_id' => $user_id));
 
         }
-
 
     }
 

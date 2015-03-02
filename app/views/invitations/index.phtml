@@ -9,7 +9,7 @@
 
         $html .= '<form name="new_invitation" action="inviteUser" method="post">' . "\n";
         $html .= '<label for="invite_username">User to invite: </label>' . "\n";
-        $html .= '<input id="invite_username" type="text" name="invite_username" placeholder="Enter username to invite">' . "\n";
+        $html .= '<input id="invite_username" type="text" name="invite_username" maxlength="30" placeholder="Enter username to invite">' . "\n";
 
         $html .= '<p>List to invite to: </p>' . "\n";
         $html .= '<select id="list" name="list">' . "\n";

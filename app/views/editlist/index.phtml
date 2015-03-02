@@ -7,7 +7,7 @@
             <input id="current_title" name="list_title" type="text" value="<?php echo $list->title; ?>" disabled>
 
             <label for="new_title">New Title: </label>
-            <input id="new_title" name="new_title" type="text" placeholder="Enter new title">
+            <input id="new_title" name="new_title" type="text" maxlength="50" placeholder="Enter new title">
             <input name="list_id" value="<?php echo $list->id; ?>" hidden>
             <div id="edit_controls">
                 <input class="btn btn-success" type="submit" value="Save">

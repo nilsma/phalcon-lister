@@ -17,6 +17,7 @@ class RegisterForm extends Form {
 
         // Username
         $username = new Text('username', array(
+            'maxlength' => 30,
             'placeholder' => 'Username'
         ));
 
@@ -37,6 +38,7 @@ class RegisterForm extends Form {
 
         // Email
         $email = new Email('email', array(
+            'maxlength' => 50,
             'placeholder' => 'Email'
         ));
 
@@ -59,6 +61,7 @@ class RegisterForm extends Form {
 
         // Password
         $password = new Password('password', array(
+            'maxlength' => 16,
             'placeholder' => 'Password'
         ));
 
@@ -79,6 +82,7 @@ class RegisterForm extends Form {
 
         // Repeat
         $repeat = new Password('repeat', array(
+            'maxlength' => 16,
             'placeholder' => 'Repeat password'
         ));
 

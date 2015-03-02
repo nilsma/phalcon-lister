@@ -6,6 +6,8 @@ class LogoutController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
 
+        $this->view->disable();
+
         if(!$this->session->has('auth') || $this->session->get('auth') == null) {
 
             $this->flash->error('You have to login first');
@@ -22,6 +24,8 @@ class LogoutController extends \Phalcon\Mvc\Controller
                 $this->response->redirect('');
             }
 
+            $cookie = $this->cookies->get('remember-me');
+            $cookie->delete();
             $this->session->destroy();
 
             return $this->response->redirect('');

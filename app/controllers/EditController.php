@@ -34,7 +34,11 @@ class EditController extends ControllerBase
 
         }
 
-        $lists = Lists::findLists($user->id);
+        $lists = Lists::find(array(
+            "conditions" => "owner = ?1",
+            "bind" => array(1 => $user->id),
+            "order" => "title"
+        ));
 
         $this->view->setVar('lists', $lists);
 

@@ -30,8 +30,6 @@ class EditController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $this->view->setVar("user", $user);
-
         }
 
         $lists = Lists::find(array(
@@ -41,6 +39,7 @@ class EditController extends ControllerBase
         ));
 
         $this->view->setVar('lists', $lists);
+        $this->view->setVar("user", $user);
 
     }
 
@@ -71,6 +70,10 @@ class EditController extends ControllerBase
             } else {
 
                 $list->save();
+                $user->last_list = $list->id;
+                $user->save();
+                $this->session->set('user', serialize($user));
+
                 $this->response->redirect('edit/');
 
             }

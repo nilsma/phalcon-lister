@@ -149,13 +149,6 @@ class InvitationsController extends ControllerBase
                 "limit" => 1
             ));
 
-            /*
-            $invitation = Invitations::findFirst(array(
-                "list_id" => $list_id,
-                "invited_id" => $user->id
-            ));
-            */
-
             $member = new Members();
             $member->id = NULL;
             $member->owner_id = $invitations[0]->owner_id;

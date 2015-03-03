@@ -165,8 +165,6 @@ class MemberController extends ControllerBase
 
     public function tapItemAction() {
 
-        $this->view->disable();
-
         $item_id = $this->request->getPost('id');
         $current_status = $this->request->getPost('tap');
 

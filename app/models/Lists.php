@@ -39,7 +39,7 @@ class Lists extends \Phalcon\Mvc\Model
 
     public static function findLists($id) {
 
-        $sql = "(SELECT * FROM lists WHERE owner={$id}) UNION (SELECT * FROM lists WHERE id in (SELECT list_id FROM members WHERE user_id={$id})) ORDER BY title";
+        $sql = "(SELECT * FROM lists WHERE owner={$id}) UNION (SELECT * FROM lists WHERE id in (SELECT list_id FROM members WHERE member_id={$id})) ORDER BY title";
 
         $lists = new Lists();
 

@@ -50,9 +50,9 @@ class InvitationsController extends ControllerBase
 
     }
 
-    private function getMemberships($user_id) {
+    private function getMemberships($member_id) {
 
-        $memberships = Members::find("user_id = {$user_id}");
+        $memberships = Members::find("member_id = {$member_id}");
 
         $mships = array();
 
@@ -152,7 +152,7 @@ class InvitationsController extends ControllerBase
             $member->id = NULL;
             $member->owner_id = $invitation->inviter_id;
             $member->list_id = $list_id;
-            $member->user_id = $user->id;
+            $member->member_id = $user->id;
 
             try {
 
@@ -266,7 +266,7 @@ class InvitationsController extends ControllerBase
             ));
 
             $members = Members::find(array(
-                "conditions" => "owner_id = ?1 AND list_id = ?2 AND user_id = ?3",
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND member_id = ?3",
                 "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
                 "limit" => 1
             ));

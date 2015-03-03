@@ -99,7 +99,7 @@ class EditlistController extends ControllerBase
 
             $user = Users::findFirst("id = {$mr->user_id}");
             $member = array(
-                'user_id' => $user->id,
+                'member_id' => $user->id,
                 'username' => $user->username
             );
 

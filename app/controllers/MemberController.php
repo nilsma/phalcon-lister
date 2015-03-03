@@ -111,7 +111,7 @@ class MemberController extends ControllerBase
 
             $list = Lists::findFirst("id = {$list_id}");
             $item = Items::findFirst("id = {$this->request->getPost("item_id")}");
-            $member = Members::findFirst(array("list_id" => $list_id, "user_id" => $user->id));
+            $member = Members::findFirst(array("list_id" => $list_id, "member_id" => $user->id));
 
             if($list->owner == $user->id || $member) {
 
@@ -140,7 +140,7 @@ class MemberController extends ControllerBase
             $item_name = $filter->sanitize($this->request->getPost('item_to_add'), "string");
 
             $list = Lists::findFirst(array("list_id" => $list_id));
-            $member = Members::findFirst(array("list_id" => $list_id, "user_id" => $user->id));
+            $member = Members::findFirst(array("list_id" => $list_id, "member_id" => $user->id));
 
             $item = new Items();
             $item->id = NULL;

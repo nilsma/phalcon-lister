@@ -114,6 +114,7 @@ function deleteInviter(user_id, list_id, callback) {
 }
 
 function initDeleteMembership() {
+    alert('test');
     getMembershipListIdToDelete(this, function(list_id) {
         deleteMembership(list_id, function() {
             location.reload();
@@ -190,6 +191,7 @@ function initDeleteMember() {
                 location.reload();
             });
         });
+
     });
 }
 

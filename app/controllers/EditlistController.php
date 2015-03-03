@@ -67,9 +67,6 @@ class EditlistController extends ControllerBase
 
             }
 
-            $sql = "UPDATE Lists SET title=:new_title: WHERE id=:list_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'new_title' => $new_title));
-
         }
 
         return $this->response->redirect('editlist/');
@@ -78,13 +75,33 @@ class EditlistController extends ControllerBase
 
     public function deleteMemberAction() {
 
+        $this->view->disable();
+
         if($this->request->isPost()) {
+
+            $user = new Users();
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
 
             $list_id = $this->request->getPost('list_id');
             $member_id = $this->request->getPost('member_id');
 
-            $sql = "DELETE FROM Members WHERE list_id = :list_id: AND user_id = :member_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'member_id' => $member_id));
+            $members = Members::find(array(
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND member_id = ?3",
+                "bind" => array(1 => $user->id, 2 => $list_id, 3 => $member_id),
+                "limit" => 1
+            ));
+
+            if($members[0]) {
+
+                $members[0]->delete();
+
+            }
 
         }
 

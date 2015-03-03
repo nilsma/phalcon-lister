@@ -17,8 +17,10 @@
 
         foreach($lists as $list) {
 
+            $url = '/member/list/' . $list->id . '/';
+
             $html .= '<tr>' . "\n";
-            $html .= '<td>' . $list->title . '</td>' . "\n";
+            $html .= '<td><a href="' . $url . '">' . $list->title . '</a></td>' . "\n";
 
             $html .= '<td>' . "\n";
             $html .= '<form name="edit_list_' . $list->id . '" action="editlist/" method="post">' . "\n";

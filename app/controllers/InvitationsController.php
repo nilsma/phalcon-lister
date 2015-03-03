@@ -31,7 +31,7 @@ class InvitationsController extends ControllerBase
             }
 
             $lists = Lists::find(array(
-                "conditions" => "owner = ?1",
+                "conditions" => "owner_id = ?1",
                 "bind" => array(1 => $user->id),
                 "order" => "title"
             ));
@@ -78,13 +78,13 @@ class InvitationsController extends ControllerBase
 
     private function getInvitationsAsInvited($user_id) {
 
-        $invitations = Invitations::find("user_id = {$user_id}");
+        $invitations = Invitations::find("invited_id = {$user_id}");
 
         $invs = array();
 
         foreach($invitations as $i) {
 
-            $inviter = Users::findFirst("id = {$i->inviter_id}");
+            $inviter = Users::findFirst("id = {$i->owner_id}");
             $inv_list = Lists::findFirst("id = {$i->list_id}");
 
             $inv = array(
@@ -103,13 +103,13 @@ class InvitationsController extends ControllerBase
 
     private function getInvitationsAsInviter($user_id) {
 
-        $invitations = Invitations::find("inviter_id = {$user_id}");
+        $invitations = Invitations::find("owner_id = {$user_id}");
 
         $invs = array();
 
         foreach($invitations as $i) {
 
-            $inv_user = Users::findFirst("id = {$i->user_id}");
+            $inv_user = Users::findFirst("id = {$i->invited_id}");
             $inv_list = Lists::findFirst("id = {$i->list_id}");
 
             $inv = array(
@@ -143,14 +143,22 @@ class InvitationsController extends ControllerBase
 
             $list_id = $this->request->getPost('list_id');
 
+            $invitations = Invitations::find(array(
+                "conditions" => "list_id = ?1 AND invited_id = ?2",
+                "bind" => array(1 => $list_id, 2 => $user->id),
+                "limit" => 1
+            ));
+
+            /*
             $invitation = Invitations::findFirst(array(
                 "list_id" => $list_id,
-                "user_id" => $user->id
+                "invited_id" => $user->id
             ));
+            */
 
             $member = new Members();
             $member->id = NULL;
-            $member->owner_id = $invitation->inviter_id;
+            $member->owner_id = $invitations[0]->owner_id;
             $member->list_id = $list_id;
             $member->member_id = $user->id;
 
@@ -160,7 +168,7 @@ class InvitationsController extends ControllerBase
                     $transaction->rollback("Failed member save");
                 }
 
-                if($invitation->delete() == false) {
+                if($invitations[0]->delete() == false) {
                     $transaction->rollback("Failed invitation delete");
                 }
 
@@ -189,8 +197,8 @@ class InvitationsController extends ControllerBase
             $list_id = $this->request->getPost('list_id');
             $user_id = $user->id;
 
-            $sql = "DELETE FROM Invitations WHERE list_id = :list_id: AND user_id = :user_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'user_id' => $user_id));
+            $sql = "DELETE FROM Invitations WHERE list_id = :list_id: AND invited_id = :invited_id:";
+            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'invited_id' => $user_id));
 
         }
 
@@ -208,10 +216,10 @@ class InvitationsController extends ControllerBase
             }
 
             $list_id = $this->request->getPost('list_id');
-            $user_id = $user->id;
+            $member_id = $user->id;
 
-            $sql = "DELETE FROM Members WHERE list_id = :list_id: AND user_id = :user_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'user_id' => $user_id));
+            $sql = "DELETE FROM Members WHERE list_id = :list_id: AND member_id = :member_id:";
+            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'member_id' => $member_id));
 
 
         }
@@ -230,10 +238,10 @@ class InvitationsController extends ControllerBase
             }
 
             $list_id = $this->request->getPost('list_id');
-            $user_id = $this->request->getPost('user_id');
+            $invited_id = $this->request->getPost('member_id');
 
-            $sql = "DELETE FROM Invitations WHERE list_id = :list_id: AND user_id = :user_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'user_id' => $user_id));
+            $sql = "DELETE FROM Invitations WHERE list_id = :list_id: AND invited_id = :invited_id:";
+            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'invited_id' => $invited_id));
 
         }
 
@@ -260,7 +268,7 @@ class InvitationsController extends ControllerBase
             $user_to_invite = Users::findFirst("username = \"{$username_to_invite}\"");
 
             $invitations = Invitations::find(array(
-                "conditions" => "inviter_id = ?1 AND list_id = ?2 AND user_id = ?3",
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND invited_id = ?3",
                 "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
                 "limit" => 1
             ));
@@ -301,9 +309,9 @@ class InvitationsController extends ControllerBase
                 $invitation = new Invitations();
 
                 $invitation->id = NULL;
-                $invitation->inviter_id = $user->id;
+                $invitation->owner_id = $user->id;
                 $invitation->list_id = $list_id;
-                $invitation->user_id = $user_to_invite->id;
+                $invitation->invited_id = $user_to_invite->id;
 
                 $invitation->save();
             }

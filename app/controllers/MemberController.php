@@ -87,7 +87,7 @@ class MemberController extends ControllerBase
 
         if(!$current_list) {
             //TODO add alphabetic sorting
-            $current_list = Lists::findFirst('owner ="' . $user->id . '"');
+            $current_list = Lists::findFirst('owner_id ="' . $user->id . '"');
         }
 
         return $current_list;
@@ -113,7 +113,7 @@ class MemberController extends ControllerBase
             $item = Items::findFirst("id = {$this->request->getPost("item_id")}");
             $member = Members::findFirst(array("list_id" => $list_id, "member_id" => $user->id));
 
-            if($list->owner == $user->id || $member) {
+            if($list->owner_id == $user->id || $member) {
 
                 $item->delete();
 
@@ -148,7 +148,7 @@ class MemberController extends ControllerBase
             $item->name = $item_name;
             $item->tapped = false;
 
-            if($list->owner = $user->id || $member) {
+            if($list->owner_id = $user->id || $member) {
 
                 $item->save();
 

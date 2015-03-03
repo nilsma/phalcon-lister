@@ -105,7 +105,7 @@ function deleteInviter(user_id, list_id, callback) {
         }
     }
 
-    var param1 = "user_id=".concat(user_id);
+    var param1 = "member_id=".concat(user_id);
     var param2 = "&list_id=".concat(list_id);
     var params = param1.concat(param2);
     xmlhttp.open("POST", "deleteInviter", true);
@@ -114,7 +114,6 @@ function deleteInviter(user_id, list_id, callback) {
 }
 
 function initDeleteMembership() {
-    alert('test');
     getMembershipListIdToDelete(this, function(list_id) {
         deleteMembership(list_id, function() {
             location.reload();

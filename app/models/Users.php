@@ -59,11 +59,11 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id', 'Invitations', 'inviter_id', NULL);
-        $this->hasMany('id', 'Invitations', 'user_id', NULL);
-        $this->hasMany('id', 'Lists', 'owner', NULL);
+        $this->hasMany('id', 'Invitations', 'owner_id', NULL);
+        $this->hasMany('id', 'Invitations', 'invited_id', NULL);
+        $this->hasMany('id', 'Lists', 'owner_id', NULL);
         $this->hasMany('id', 'Members', 'owner_id', NULL);
-        $this->hasMany('id', 'Members', 'user_id', NULL);
+        $this->hasMany('id', 'Members', 'member_id', NULL);
     }
 
 }

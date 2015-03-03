@@ -35,7 +35,7 @@ class EditController extends ControllerBase
         }
 
         $lists = Lists::find(array(
-            "conditions" => "owner = ?1",
+            "conditions" => "owner_id = ?1",
             "bind" => array(1 => $user->id),
             "order" => "title"
         ));
@@ -60,7 +60,7 @@ class EditController extends ControllerBase
             $list = new Lists();
 
             $list->id = NULL;
-            $list->owner = $user->id;
+            $list->owner_id = $user->id;
             $list->title = $filter->sanitize($this->request->getPost('list_title'), "string");
 
             if(empty($list->title)) {
@@ -93,7 +93,7 @@ class EditController extends ControllerBase
                 $list = Lists::findFirst("id = {$list_id}");
 
                 $invitations = Invitations::find(array(
-                    "conditions" => "inviter_id = ?1 AND list_id = ?2",
+                    "conditions" => "owner_id = ?1 AND list_id = ?2",
                     "bind" => array(1 => $user->id, 2 => $list_id)
                 ));
 

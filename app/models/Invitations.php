@@ -13,7 +13,7 @@ class Invitations extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $inviter_id;
+    public $owner_id;
 
     /**
      *
@@ -25,16 +25,6 @@ class Invitations extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $user_id;
-
-    /**
-     * Initialize method for model.
-     */
-    public function initialize()
-    {
-        $this->belongsTo('inviter_id', 'Users', 'id', NULL);
-        $this->belongsTo('list_id', 'Lists', 'id', NULL);
-        $this->belongsTo('user_id', 'Users', 'id', NULL);
-    }
+    public $invited_id;
 
 }

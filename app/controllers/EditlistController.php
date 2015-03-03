@@ -30,10 +30,9 @@ class EditlistController extends ControllerBase
 
             $list_id = $this->session->get('edit_list_id');
             $list = Lists::findFirst("id = {$list_id}");
-            $this->view->setVar('list', $list);
+            $members = Members::find("list_id = {$list_id}");
 
-            $members_raw = Members::find("list_id = {$list_id}");
-            $members = $this->getMembers($members_raw);
+            $this->view->setVar('list', $list);
             $this->view->setVar('members', $members);
 
         }
@@ -88,26 +87,6 @@ class EditlistController extends ControllerBase
             $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'member_id' => $member_id));
 
         }
-
-    }
-
-    public function getMembers($members_raw) {
-
-        $members = array();
-
-        foreach($members_raw as $mr) {
-
-            $user = Users::findFirst("id = {$mr->user_id}");
-            $member = array(
-                'member_id' => $user->id,
-                'username' => $user->username
-            );
-
-            array_push($members, $member);
-
-        }
-
-        return $members;
 
     }
 

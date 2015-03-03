@@ -33,7 +33,9 @@
                 foreach($members as $member) {
 
                     $html .= '<tr>' . "\n";
-                    $html .= '<td><span id="i' . $member['user_id'] . '">' . $member['username'] . '</span></td>' . "\n";
+                    //$html .= '<td><span id="i' . $member['user_id'] . '">' . $member['username'] . '</span></td>' . "\n";
+                    //$html .= '<td><span id="i' . $member->id . '">' . $member->username . '</span></td>' . "\n";
+                    $html .= '<td><span id="i' . $member->id . '">' . Users::findFirst("id = {$member->member_id}")->username . '</span></td>' . "\n";
                     $html .= '<td><button class="btn btn-danger btn-small delete_member pull-right"><i class="icon-white icon-remove"></i></button></td>' . "\n";
                     $html .= '</tr>' . "\n";
 

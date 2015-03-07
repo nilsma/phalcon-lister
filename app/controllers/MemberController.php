@@ -11,6 +11,8 @@ class MemberController extends ControllerBase
 
     public function indexAction() {
 
+        $this->view->disable();
+
         $this->assets->addCss('css/main.css');
         $this->assets->addCss('css/member.css');
         $this->assets->addJs('js/main.js');
@@ -20,26 +22,103 @@ class MemberController extends ControllerBase
 
             $user = unserialize($this->session->get("user"));
 
-            if(!$this->request->has('list')) {
+            $list = $this->getCurrentList($user);
 
-                $current_list = $this->getCurrentList($user);
-
-            } else {
-
-                $current_list = Lists::findFirst("id = {$this->request->get('list')}");
-                $user->last_list = $current_list->id;
-
-                $this->session->set('user', serialize($user));
-                $user->save();
-
-            }
-
-            $this->response->redirect('member/list/' . $current_list->id . '/');
+            $this->response->redirect('member/list/' . $list->id . '/');
 
         } else {
+
             $this->flash->error('You have to login first');
+
             return $this->response->redirect('');
+
         }
+
+    }
+
+    private function getCurrentList($user) {
+
+        if($user->last_list != NULL) {
+
+            $current_list = $this->getUserLastList($user);
+
+        } else {
+
+            $current_list = $this->getUserDefaultList($user);
+
+        }
+
+        return $current_list;
+
+    }
+
+    private function getUserDefaultList($user) {
+
+        $users_lists = Lists::findLists($user->id);
+
+        return $users_lists[0];
+
+    }
+
+    private function getUserLastList($user) {
+
+        $last_lists = Lists::find(array(
+            "conditions" => "id = ?1",
+            "bind" => array(1 => $user->last_list),
+            "limit" => 1
+        ));
+
+        if(count($last_lists) > 0 && ($last_lists[0]) && (($last_lists[0]->owner_id == $user->id) || $this->validateMembership($last_lists[0], $user))) {
+
+            $current_list = $last_lists[0];
+
+        } else {
+
+            $current_list = $this->getUserDefaultList($user);
+
+        }
+
+        return $current_list;
+
+    }
+
+    private function validateMembership($list, $user) {
+
+        $isMember = false;
+
+        $memberships = Members::find(array(
+            "conditions" => "list_id = ?1 AND member_id = ?2",
+            "bind" => array(1 => $list->id, 2 => $user->id),
+            "limit" => 1
+        ));
+
+        if(count($memberships) > 0) {
+
+            $isMember = true;
+
+        }
+
+        return $isMember;
+
+    }
+
+    private function validateOwnership($list, $user) {
+
+        $isMember = false;
+
+        $ownerships = Lists::find(array(
+            "conditions" => "id = ?1 AND owner_id = ?2",
+            "bind" => array(1 => $list->id, 2 => $user->id),
+            "limit" => 1
+        ));
+
+        if(count($ownerships) > 0) {
+
+            $isMember = true;
+
+        }
+
+        return $isMember;
 
     }
 
@@ -52,25 +131,116 @@ class MemberController extends ControllerBase
 
         if($this->session->has("user") && $this->session->get("auth")) {
 
+            $user = unserialize($this->session->get("user"));
+
+            $params = $this->dispatcher->getParams();
+
+            if(count($params) > 0) {
+                $list_id = $params[0];
+
+                $candidate = Lists::findFirst("id = {$list_id}");
+
+                if($this->validateOwnership($candidate, $user) || $this->validateMembership($candidate, $user)) {
+
+                    $list = $candidate;
+                    $user->last_list = $list->id;
+                    $user->save();
+
+                } else {
+
+                    $user->last_list = null;
+
+                    try {
+
+                        $user->save();
+
+                    } catch(\Phalcon\Exception $e) {
+
+                        $this->flash->error('Something went wrong trying to fetch the list, you have been logged out');
+                        $this->response->redirect('logout/');
+
+                    }
+
+                }
+
+                $items = Items::find(array(
+                    "conditions" => "list_id = ?1",
+                    "bind" => array(1 => $list->id)
+                ));
+
+                $all_lists = Lists::findLists($user->id);
+
+                $itemform = new AddItemForm($list);
+                $this->view->setVar("itemform", $itemform);
+
+                $this->view->setVar("user", $user);
+                $this->view->setVar("current_list", $list);
+                $this->view->setVar("items", $items);
+                $this->view->setVar("user_lists", $all_lists);
+
+                $this->view->pick("member/index");
+
+            } else {
+
+                return $this->response->redirect('member/');
+
+            }
+
+        } else {
+            $this->flash->error('You have to login first');
+            return $this->response->redirect('');
+        }
+
+    }
+
+    /*
+    public function listAction() {
+
+        $this->assets->addCss('css/main.css');
+        $this->assets->addCss('css/member.css');
+        $this->assets->addJs('js/main.js');
+        $this->assets->addJs('js/jquery-2.1.3.min.js');
+
+        if($this->session->has("user") && $this->session->get("auth")) {
+
+            $user = unserialize($this->session->get("user"));
+
             $params = $this->dispatcher->getParams();
             $list_id = $params[0];
 
-            $current_list = Lists::findFirst("id = {$list_id}");
+            $all_lists = Lists::find(array(
+                "conditions" => "owner_id = ?1",
+                "bind" => array(1 => $user->id)
+            ));
 
-            $user = unserialize($this->session->get("user"));
-            $user_lists = $this->getUserLists($user);
+            $lists = Lists::find(array(
+                "conditions" => "id = ?1 AND owner_id = ?2",
+                "bind" => array(1 => $list_id, 2 => $user->id),
+                "limit" => 1
+            ));
 
-            $user->last_list = $current_list->id;
+            if(count($lists) > 0) {
+                $list = $lists[0];
+            } else {
+                $list = $this->getCurrentList($user);
+            }
 
+            $user->last_list = $list->id;
             $this->session->set('user', serialize($user));
             $user->save();
 
-            $items = Items::find("list_id = {$current_list->id}");
+            $items = Items::find(array(
+                "conditions" => "list_id = ?1",
+                "bind" => array(1 => $list->id)
+            ));
+
+            $itemform = new AddItemForm($list);
+            $this->view->setVar("itemform", $itemform);
 
             $this->view->setVar("user", $user);
-            $this->view->setVar("current_list", $current_list);
+            $this->view->setVar("current_list", $list);
             $this->view->setVar("items", $items);
-            $this->view->setVar("user_lists", $user_lists);
+            $this->view->setVar("user_lists", $all_lists);
 
             $this->view->pick("member/index");
 
@@ -80,26 +250,7 @@ class MemberController extends ControllerBase
         }
 
     }
-
-    private function getCurrentList($user) {
-
-        $current_list = Lists::findFirst('id = "' . $user->last_list . '"');
-
-        if(!$current_list) {
-            //TODO add alphabetic sorting
-            $current_list = Lists::findFirst('owner_id ="' . $user->id . '"');
-        }
-
-        return $current_list;
-
-    }
-
-    private function getUserLists(Users $user) {
-
-        $user_lists = Lists::findLists($user->id);
-        return $user_lists;
-
-    }
+    */
 
     public function deleteItemAction() {
 

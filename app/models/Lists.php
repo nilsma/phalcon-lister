@@ -26,7 +26,13 @@ class Lists extends \Phalcon\Mvc\Model
     public $title;
 
     public static function findLists($id) {
-        $sql = "(SELECT * FROM lists WHERE owner_id={$id}) UNION (SELECT * FROM lists WHERE id in (SELECT list_id FROM members WHERE member_id={$id})) ORDER BY title";
+
+        $sql = "";
+        $sql .= "(SELECT * FROM lists WHERE owner_id={$id}) ";
+        $sql .= "UNION ";
+        $sql .= "(SELECT * FROM lists WHERE id in (SELECT list_id FROM members WHERE member_id={$id})) ";
+        $sql .= "ORDER BY title";
+
         $lists = new Lists();
         return new ResultSet(null, $lists, $lists->getReadConnection()->query($sql));
     }

@@ -69,11 +69,11 @@
             ?>
         </div>
         <div id="item_input">
-            <form name="add_item" method="post" action="/member/addItem">
-                <input name="item_to_add" type="text" maxlength="200">
-                <input id="working_list" name="working_list" type="hidden" value="<?php echo $current_list->id; ?>">
-                <input name="add_item" class="btn btn-primary pull-right" type="submit" value="Add" >
-            </form>
+
+            <?php echo $itemform->render("item_name") . "\n"; ?>
+            <?php echo $itemform->render("working_list") . "\n"; ?>
+            <?php echo $itemform->render("Add") . "\n"; ?>
+
         </div>
     </div> <!-- end #items -->
 </div>

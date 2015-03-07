@@ -166,7 +166,7 @@ class MemberController extends ControllerBase
 
                 $users_lists = Lists::findLists($user->id);
 
-                $this->view->setVar("listselectform", new ListSelectForm());
+                $this->view->setVar("listselectform", new ListSelectForm($user, $list));
                 $this->view->setVar("itemform", new AddItemForm($list));
                 $this->view->setVar("user", $user);
                 $this->view->setVar("current_list", $list);

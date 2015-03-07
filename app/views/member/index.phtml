@@ -70,9 +70,11 @@
         </div>
         <div id="item_input">
 
+            <?php echo Phalcon\Tag::form(array("member/addItem", "method" => "post")) . "\n"; ?>
             <?php echo $itemform->render("item_name") . "\n"; ?>
             <?php echo $itemform->render("working_list") . "\n"; ?>
             <?php echo $itemform->render("Add") . "\n"; ?>
+            <?php echo Phalcon\Tag::endForm() . "\n"; ?>
 
         </div>
     </div> <!-- end #items -->

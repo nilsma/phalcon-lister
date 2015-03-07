@@ -145,6 +145,7 @@ class MemberController extends ControllerBase
                     $list = $candidate;
                     $user->last_list = $list->id;
                     $user->save();
+                    $this->session->set("user", serialize($user));
 
                 } else {
 
@@ -163,20 +164,14 @@ class MemberController extends ControllerBase
 
                 }
 
-                $items = Items::find(array(
-                    "conditions" => "list_id = ?1",
-                    "bind" => array(1 => $list->id)
-                ));
+                $users_lists = Lists::findLists($user->id);
 
-                $all_lists = Lists::findLists($user->id);
-
-                $itemform = new AddItemForm($list);
-                $this->view->setVar("itemform", $itemform);
-
+                $this->view->setVar("listselectform", new ListSelectForm());
+                $this->view->setVar("itemform", new AddItemForm($list));
                 $this->view->setVar("user", $user);
                 $this->view->setVar("current_list", $list);
-                $this->view->setVar("items", $items);
-                $this->view->setVar("user_lists", $all_lists);
+                $this->view->setVar("items", Items::find(array("conditions" => "list_id = ?1", "bind" => array(1 => $list->id))));
+                $this->view->setVar("user_lists", $users_lists);
 
                 $this->view->pick("member/index");
 
@@ -192,65 +187,6 @@ class MemberController extends ControllerBase
         }
 
     }
-
-    /*
-    public function listAction() {
-
-        $this->assets->addCss('css/main.css');
-        $this->assets->addCss('css/member.css');
-        $this->assets->addJs('js/main.js');
-        $this->assets->addJs('js/jquery-2.1.3.min.js');
-
-        if($this->session->has("user") && $this->session->get("auth")) {
-
-            $user = unserialize($this->session->get("user"));
-
-            $params = $this->dispatcher->getParams();
-            $list_id = $params[0];
-
-            $all_lists = Lists::find(array(
-                "conditions" => "owner_id = ?1",
-                "bind" => array(1 => $user->id)
-            ));
-
-            $lists = Lists::find(array(
-                "conditions" => "id = ?1 AND owner_id = ?2",
-                "bind" => array(1 => $list_id, 2 => $user->id),
-                "limit" => 1
-            ));
-
-            if(count($lists) > 0) {
-                $list = $lists[0];
-            } else {
-                $list = $this->getCurrentList($user);
-            }
-
-            $user->last_list = $list->id;
-            $this->session->set('user', serialize($user));
-            $user->save();
-
-            $items = Items::find(array(
-                "conditions" => "list_id = ?1",
-                "bind" => array(1 => $list->id)
-            ));
-
-            $itemform = new AddItemForm($list);
-            $this->view->setVar("itemform", $itemform);
-
-            $this->view->setVar("user", $user);
-            $this->view->setVar("current_list", $list);
-            $this->view->setVar("items", $items);
-            $this->view->setVar("user_lists", $all_lists);
-
-            $this->view->pick("member/index");
-
-        } else {
-            $this->flash->error('You have to login first');
-            return $this->response->redirect('');
-        }
-
-    }
-    */
 
     public function deleteItemAction() {
 
@@ -288,7 +224,7 @@ class MemberController extends ControllerBase
             $user = unserialize($this->session->get("user"));
 
             $list_id = $this->request->getPost('working_list');
-            $item_name = $filter->sanitize($this->request->getPost('item_to_add'), "string");
+            $item_name = $filter->sanitize($this->request->getPost('item_name'), "string");
 
             $list = Lists::findFirst(array("list_id" => $list_id));
             $member = Members::findFirst(array("list_id" => $list_id, "member_id" => $user->id));

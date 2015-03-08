@@ -38,6 +38,7 @@ class EditController extends ControllerBase
             "order" => "title"
         ));
 
+        $this->view->setVar('addListForm', new AddListForm());
         $this->view->setVar('lists', $lists);
         $this->view->setVar("user", $user);
 

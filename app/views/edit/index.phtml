@@ -2,11 +2,13 @@
 <div>
     <?php echo $this->flashSession->output(); ?>
     <div id="add_list_form">
-        <form name="add_list" method="post" action="addList">
-            <label for="">Add list: </label>
-            <input type="text" name="list_title" maxlength="50" placeholder="New list title">
-            <input class="btn btn-primary" type="submit" value="Add">
-        </form>
+
+        <?php echo Phalcon\Tag::form(array("edit/addList", "method" => "post", "name" => "add_list")) . "\n"; ?>
+        <?php echo $addListForm->label('list_title') . "\n"; ?>
+        <?php echo $addListForm->render('list_title') . "\n"; ?>
+        <?php echo $addListForm->render('Add') . "\n"; ?>
+        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
+
     </div>
     <div id="lists">
         <?php

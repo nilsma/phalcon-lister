@@ -32,6 +32,7 @@ class EditlistController extends ControllerBase
             $list = Lists::findFirst("id = {$list_id}");
             $members = Members::find("list_id = {$list_id}");
 
+            $this->view->setVar('editListForm', new EditListForm($list));
             $this->view->setVar('list', $list);
             $this->view->setVar('members', $members);
 
@@ -52,12 +53,12 @@ class EditlistController extends ControllerBase
 
             $filter = new Filter();
 
-            $list = new Lists();
             $list = Lists::findFirst("id = {$this->request->getPost('list_id')}");
-            $list->title = $filter->sanitize($this->request->getPost('new_title'), "string");
+            $new_title = $filter->sanitize($this->request->getPost('new_title'), "string");
 
-            if(strlen($list->title) > 0) {
+            if(strlen($new_title) > 0) {
 
+                $list->title = $new_title;
                 $list->save();
 
             } else {

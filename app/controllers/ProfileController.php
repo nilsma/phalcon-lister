@@ -29,6 +29,8 @@ class ProfileController extends \Phalcon\Mvc\Controller
                 $this->response->redirect('');
             }
 
+            $this->view->setVar("changePasswordForm", new ChangePasswordForm());
+            $this->view->setVar("changeEmailForm", new ChangeEmailForm($user));
             $this->view->setVar("user", $user);
 
         }

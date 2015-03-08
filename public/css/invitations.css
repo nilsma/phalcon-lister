@@ -1,4 +1,6 @@
-div#invite {
+
+div#invite,
+div#invite form {
     display: flex;
     flex-direction: column;
     align-items: center;

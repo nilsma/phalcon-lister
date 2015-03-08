@@ -3,20 +3,24 @@
     <?php echo $this->flashSession->output(); ?>
     <div id="change_password">
         <h3>Change Password</h3>
-        <form name="change_password" method="post" action="changePassword">
-            <input type="password" name="current_password" id="current_password" maxlength="16" placeholder="Current password">
-            <input type="password" name="new_password" id="new_password" maxlength="16" placeholder="New password">
-            <input type="password" name="repeat_password" id="repeat_password" maxlength="16" placeholder="Repeat password">
-            <input class="btn btn-primary" type="submit" name="submit_password_change" value="Change Password">
-        </form>
+
+        <?php echo Phalcon\Tag::form(array("profile/changePassword", "method" => "post", "name" => "change_password")) . "\n"; ?>
+        <?php echo $changePasswordForm->render('current_password') . "\n"; ?>
+        <?php echo $changePasswordForm->render('new_password') . "\n"; ?>
+        <?php echo $changePasswordForm->render('repeat_password') . "\n"; ?>
+        <?php echo $changePasswordForm->render('Change Password') . "\n"; ?>
+        <?php echo Phalcon\Tag::endForm() . "\n" ?>
+
     </div>
     <div id="change_email">
         <h3>Change Email</h3>
-        <form name="change_email" method="post" action="changeEmail">
-            <input type="email" name="current_email" id="current_email" value="<?php echo $user->email; ?>" disabled>
-            <input type="email" name="new_email" id="new_email" maxlength="50" placeholder="New email">
-            <input type="email" name="repeat_email" id="repeat_email" maxlength="50" placeholder="Repeat email">
-            <input class="btn btn-primary" type="submit" name="submit_email_change" value="Change Email">
-        </form>
+
+        <?php echo Phalcon\Tag::form(array("profile/changeEmail", "method" => "post", "name" => "change_email")) . "\n" ?>
+        <?php echo $changeEmailForm->render('current_email') . "\n"; ?>
+        <?php echo $changeEmailForm->render('new_email') . "\n"; ?>
+        <?php echo $changeEmailForm->render('repeat_email') . "\n"; ?>
+        <?php echo $changeEmailForm->render('Change Email') . "\n"; ?>
+        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
+
     </div>
 </div>

@@ -3,38 +3,14 @@
     <?php echo $this->flashSession->output(); ?>
     <div id="invite">
         <h3>Create new invitation</h3>
-        <?php
 
-        $html = '';
+        <?php echo Phalcon\Tag::form(array("invitations/inviteUser", "method" => "post", "name" => "new_invitation")) . "\n"; ?>
+        <?php echo $invitationsForm->label('invite_username') . "\n"; ?>
+        <?php echo $invitationsForm->render('invite_username') . "\n"; ?>
+        <?php echo $invitationsForm->render('select') . "\n"; ?>
+        <?php echo $invitationsForm->render('Invite') . "\n"; ?>
+        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
 
-        $html .= '<form name="new_invitation" action="inviteUser" method="post">' . "\n";
-        $html .= '<label for="invite_username">User to invite: </label>' . "\n";
-        $html .= '<input id="invite_username" type="text" name="invite_username" maxlength="30" placeholder="Enter username to invite">' . "\n";
-
-        $html .= '<p>List to invite to: </p>' . "\n";
-        $html .= '<select id="list" name="list">' . "\n";
-
-        foreach($lists as $list) {
-
-            if($list->id == $user->last_list) {
-
-                $html .= '<option value="' . $list->id . '" selected>' . $list->title . '</option>' . "\n";
-
-            } else {
-
-                $html .= '<option value="' . $list->id . '">' . $list->title . '</option>' . "\n";
-
-            }
-
-        }
-
-        $html .= '</select>' . "\n";
-        $html .= '<input class="btn btn-primary pull-right" name="submit_invite" type="submit" value="Invite">' . "\n";
-        $html .= '</form>' . "\n";
-
-        echo $html;
-
-        ?>
     </div>
     <div id="invited">
         <h3>Your invitations</h3>

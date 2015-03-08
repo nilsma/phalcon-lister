@@ -40,6 +40,7 @@ class InvitationsController extends ControllerBase
             $invited = $this->getInvitationsAsInvited($user->id);
             $memberships = $this->getMemberships($user->id);
 
+            $this->view->setVar("invitationsForm", new InvitationsForm($lists));
             $this->view->setVar("user", $user);
             $this->view->setVar("inviter", $inviter);
             $this->view->setVar("invited", $invited);

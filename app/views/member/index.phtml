@@ -4,9 +4,21 @@
     <div id="lists">
         <h2>My Lists:</h2>
 
+        <?php
+        if(count($user_lists) < 1) {
+            echo "<p>You haven't made any lists yet</p>" . "\n";
+        } else {
+            echo Phalcon\Tag::form(array("member/", "method" => "post", "name" => "load_list")) . "\n";
+            echo $listselectform->render('select') . "\n";
+            echo Phalcon\Tag::endForm() . "\n";
+        }
+        ?>
+
+        <!--
         <?php echo Phalcon\Tag::form(array("member/", "method" => "post", "name" => "load_list")) . "\n"; ?>
         <?php echo $listselectform->render('select') . "\n"; ?>
         <?php echo Phalcon\Tag::endForm() . "\n"; ?>
+        -->
 
     </div>
 

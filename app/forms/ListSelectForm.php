@@ -11,7 +11,10 @@ class ListSelectForm extends Form {
             'using' => array('id', 'title'),
             'name' => 'list',
             'class' => 'form-control',
-            'id' => 'select_list'
+            'id' => 'select_list',
+            'useEmpty' => true,
+            'emptyText' => 'Create New List ...',
+            'emptyValue' => 0
         ));
 
         $select->setDefault($list->id);

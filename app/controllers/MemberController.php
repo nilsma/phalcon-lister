@@ -22,8 +22,24 @@ class MemberController extends ControllerBase
 
             $user = unserialize($this->session->get("user"));
 
-            $list = $this->getCurrentList($user);
+            $user_lists = Lists::findLists($user->id);
 
+            /*
+            if(count($user_lists) < 1) {
+
+                $this->response->redirect('edit/');
+
+            } else {
+
+                $list = $this->getCurrentList($user);
+
+                $this->response->redirect('member/list/' . $list->id . '/');
+
+            }
+            */
+
+            $list = $this->getCurrentList($user);
+            
             $this->response->redirect('member/list/' . $list->id . '/');
 
         } else {
@@ -122,6 +138,47 @@ class MemberController extends ControllerBase
 
     }
 
+    public function addListAction() {
+
+        $this->view->disable();
+
+        if($this->request->isPost()) {
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $filter = new Filter();
+
+            $list = new Lists();
+
+            $list->id = NULL;
+            $list->owner_id = $user->id;
+            $list->title = $filter->sanitize($this->request->getPost('list_title'), "string");
+
+            if(empty($list->title)) {
+
+                $this->flash->error('You have to enter a list title');
+                $this->response->redirect('member/');
+
+            } else {
+
+                $list->save();
+                $user->last_list = $list->id;
+                $user->save();
+                $this->session->set('user', serialize($user));
+
+                echo json_encode($list->id);
+
+            }
+
+        }
+
+    }
+
     public function listAction() {
 
         $this->assets->addCss('css/main.css');
@@ -138,7 +195,18 @@ class MemberController extends ControllerBase
             if(count($params) > 0) {
                 $list_id = $params[0];
 
-                $candidate = Lists::findFirst("id = {$list_id}");
+                $candidates = Lists::find(array(
+                    "conditions" => "id = ?1",
+                    "bind" => array(1 => $list_id),
+                    "limit" => 1
+                ));
+
+                if(count($candidates) > 0) {
+                    $candidate = $candidates[0];
+                } else {
+                    $candidate = $this->getUserDefaultList($user);
+                    $this->response->redirect('');
+                }
 
                 if($this->validateOwnership($candidate, $user) || $this->validateMembership($candidate, $user)) {
 
@@ -164,14 +232,14 @@ class MemberController extends ControllerBase
 
                 }
 
-                $users_lists = Lists::findLists($user->id);
+                $user_lists = Lists::findLists($user->id);
 
                 $this->view->setVar("listselectform", new ListSelectForm($user, $list));
                 $this->view->setVar("itemform", new AddItemForm($list));
                 $this->view->setVar("user", $user);
                 $this->view->setVar("current_list", $list);
                 $this->view->setVar("items", Items::find(array("conditions" => "list_id = ?1", "bind" => array(1 => $list->id))));
-                $this->view->setVar("user_lists", $users_lists);
+                $this->view->setVar("user_lists", $user_lists);
 
                 $this->view->pick("member/index");
 

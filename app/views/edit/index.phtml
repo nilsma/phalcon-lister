@@ -14,30 +14,39 @@
         <?php
 
         $html = '';
-        $html .= '<table>' . "\n";
-        //TODO add table header
 
-        foreach($lists as $list) {
+        if(count($lists) < 1) {
 
-            $url = '/member/list/' . $list->id . '/';
+            $html .= '<p>You haven\'t made any lists yet</p>' . "\n";
 
-            $html .= '<tr>' . "\n";
-            $html .= '<td><a href="' . $url . '">' . $list->title . '</a></td>' . "\n";
+        } else {
 
-            $html .= '<td>' . "\n";
-            $html .= '<form name="edit_list_' . $list->id . '" action="editlist/" method="post">' . "\n";
-            $html .= '<input name="edit_list_id" value="' . $list->id . '" hidden>' . "\n";
-            $html .= '<input id="edit_submit_' . $list->id . '" name="edit_list" type="submit" hidden>' . "\n";
-            $html .= '<label for="edit_submit_' . $list->id . '" class="btn pull-right btn-warning btn-small"><i class="icon-white icon-edit"></i></label>';
-            $html .= '</form>' . "\n";
+            $html .= '<table>' . "\n";
+            //TODO add table header
 
-            $html .= '</td>' . "\n";
+            foreach($lists as $list) {
 
-            $html .= '<td><button class="btn btn-danger btn-small delete_list pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
-            $html .= '</tr>' . "\n";
+                $url = '/member/list/' . $list->id . '/';
+
+                $html .= '<tr>' . "\n";
+                $html .= '<td><a href="' . $url . '">' . $list->title . '</a></td>' . "\n";
+
+                $html .= '<td>' . "\n";
+                $html .= '<form name="edit_list_' . $list->id . '" action="editlist/" method="post">' . "\n";
+                $html .= '<input name="edit_list_id" value="' . $list->id . '" hidden>' . "\n";
+                $html .= '<input id="edit_submit_' . $list->id . '" name="edit_list" type="submit" hidden>' . "\n";
+                $html .= '<label for="edit_submit_' . $list->id . '" class="btn pull-right btn-warning btn-small"><i class="icon-white icon-edit"></i></label>';
+                $html .= '</form>' . "\n";
+
+                $html .= '</td>' . "\n";
+
+                $html .= '<td><button class="btn btn-danger btn-small delete_list pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
+                $html .= '</tr>' . "\n";
+            }
+
+            $html .= '</table>' . "\n";
+
         }
-
-        $html .= '</table>' . "\n";
 
         echo $html;
 

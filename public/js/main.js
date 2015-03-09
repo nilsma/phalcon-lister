@@ -312,9 +312,43 @@ function deleteItem(list_id, item_id, callback) {
 function selectList() {
     $(this).on('change', function() {
         var value = $(this).val();
-        var location = '/member/list/'.concat(value).concat('/');
-        window.location.href = location;
+        if(parseInt(value) === 0) {
+            var new_title = prompt("New List Title: ", "");
+            if(new_title != null) {
+                addNewList(new_title, function(result) {
+                    var url = '/member/list/'.concat(parseInt(result)).concat('/');
+                    window.location.href = url;
+                });
+            } else {
+                location.reload();
+            }
+        } else {
+            var url = '/member/list/'.concat(value).concat('/');
+            window.location.href = url;
+        }
     });
+}
+
+function addNewList(list_title, callback) {
+    var result;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            result = xmlhttp.responseText;
+            callback(JSON.parse(result));
+        }
+    }
+
+    var params = "list_title=".concat(list_title);
+    xmlhttp.open("POST", "/member/addList", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(params);
 }
 
 function initAcceptInvited() {

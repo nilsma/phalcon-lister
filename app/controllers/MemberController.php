@@ -11,8 +11,6 @@ class MemberController extends ControllerBase
 
     public function indexAction() {
 
-        $this->view->disable();
-
         $this->assets->addCss('css/main.css');
         $this->assets->addCss('css/member.css');
         $this->assets->addJs('js/main.js');
@@ -24,23 +22,30 @@ class MemberController extends ControllerBase
 
             $user_lists = Lists::findLists($user->id);
 
-            /*
-            if(count($user_lists) < 1) {
+            if(count($user_lists) > 0) {
 
-                $this->response->redirect('edit/');
-
-            } else {
+                $this->view->disable();
 
                 $list = $this->getCurrentList($user);
 
                 $this->response->redirect('member/list/' . $list->id . '/');
 
-            }
-            */
+            } else {
 
-            $list = $this->getCurrentList($user);
-            
-            $this->response->redirect('member/list/' . $list->id . '/');
+                $list = new Lists();
+
+                $this->view->setVar("user", $user);
+                $user_lists = Lists::findLists($user->id);
+                $this->view->setVar("user_lists", $user_lists);
+                $this->view->setVar("listselectform", new ListSelectForm($user, $list));
+                $this->view->setVar("items", Items::find(array("conditions" => "list_id = ?1", "bind" => array(1 => $list->id))));
+                $this->view->setVar("itemform", new AddItemForm($list));
+
+                /* quick fix redirect to edit */
+                //$this->response->redirect('edit/');
+
+            }
+
 
         } else {
 
@@ -72,7 +77,17 @@ class MemberController extends ControllerBase
 
         $users_lists = Lists::findLists($user->id);
 
-        return $users_lists[0];
+        if(count($users_lists) > 0) {
+
+            $list = $users_lists[0];
+
+        } else {
+
+            $list = new Lists();
+
+        }
+
+        return $list;
 
     }
 

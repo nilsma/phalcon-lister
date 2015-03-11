@@ -2,31 +2,33 @@
 
 $html = '';
 
-if(count($items) < 1) {
+if(count($user_lists) > 0) {
+    if(count($items) < 1) {
 
-    $html .= '<p>You haven\'t add any items yet.</p>' . "\n";
+        $html .= '<p>You haven\'t add any items yet.</p>' . "\n";
 
-} else {
+    } else {
 
-    $html .= '<table>' . "\n";
+        $html .= '<table>' . "\n";
 
-    foreach($items as $item) {
-        $item_class = '';
-        if($item->tapped) {
-            $item_class = 'item_name tapped';
-        } else {
-            $item_class = 'item_name untapped';
+        foreach($items as $item) {
+            $item_class = '';
+            if($item->tapped) {
+                $item_class = 'item_name tapped';
+            } else {
+                $item_class = 'item_name untapped';
+            }
+
+            $html .= '<tr class="' . $item_class . '">' . "\n";
+            $html .= '<td class="item_title" id="i' . $item->id . '">' . $item->name . '</td>';
+            $html .= '<td><button class="btn btn-danger btn-small delete_item item_action pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
+            $html .= '</tr>' . "\n";
+
         }
 
-        $html .= '<tr class="' . $item_class . '">' . "\n";
-        $html .= '<td class="item_title" id="i' . $item->id . '">' . $item->name . '</td>';
-        $html .= '<td><button class="btn btn-danger btn-small delete_item item_action pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
-        $html .= '</tr>' . "\n";
+        $html .= '</table>' . "\n";
 
     }
-
-    $html .= '</table>' . "\n";
-
 }
 
 echo $html;

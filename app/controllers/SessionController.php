@@ -67,6 +67,7 @@ class SessionController extends \Phalcon\Mvc\Controller {
                 $user->save();
 
                 $this->session->set('user', serialize($user));
+                $this->session->set('auth', true);
                 return $this->response->redirect('member/');
 
             } else {

@@ -5,20 +5,22 @@
         <h2>My Lists:</h2>
 
         <?php
-        if(count($user_lists) < 1) {
-            echo "<p>You haven't made any lists yet</p>" . "\n";
-        } else {
+
+        if(count($user_lists) > 0) {
             echo Phalcon\Tag::form(array("member/", "method" => "post", "name" => "load_list")) . "\n";
             echo $listselectform->render('select') . "\n";
             echo Phalcon\Tag::endForm() . "\n";
-        }
-        ?>
+        } else {
 
-        <!--
-        <?php echo Phalcon\Tag::form(array("member/", "method" => "post", "name" => "load_list")) . "\n"; ?>
-        <?php echo $listselectform->render('select') . "\n"; ?>
-        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
-        -->
+            $html = '';
+
+            $html .= '<p>You haven\'t made any lists yet.</p>' . "\n";
+            $html .= '<p class="link"><span id="create_list" class="btn btn-primary">Create a List</span></p>' . "\n";
+
+            echo $html;
+        }
+
+        ?>
 
     </div>
 
@@ -30,11 +32,13 @@
         </div>
         <div id="item_input">
 
+            <?php if(count($user_lists) > 0) { ?>
             <?php echo Phalcon\Tag::form(array("member/addItem", "method" => "post")) . "\n"; ?>
             <?php echo $itemform->render("item_name") . "\n"; ?>
             <?php echo $itemform->render("working_list") . "\n"; ?>
             <?php echo $itemform->render("Add") . "\n"; ?>
             <?php echo Phalcon\Tag::endForm() . "\n"; ?>
+            <?php } ?>
 
         </div>
     </div> <!-- end #items -->

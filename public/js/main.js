@@ -313,20 +313,24 @@ function selectList() {
     $(this).on('change', function() {
         var value = $(this).val();
         if(parseInt(value) === 0) {
-            var new_title = prompt("New List Title: ", "");
-            if(new_title != null) {
-                addNewList(new_title, function(result) {
-                    var url = '/member/list/'.concat(parseInt(result)).concat('/');
-                    window.location.href = url;
-                });
-            } else {
-                location.reload();
-            }
+            promptNewList();
         } else {
             var url = '/member/list/'.concat(value).concat('/');
             window.location.href = url;
         }
     });
+}
+
+function promptNewList() {
+    var new_title = prompt("New List Title: ", "");
+    if(new_title != null) {
+        addNewList(new_title, function(result) {
+            var url = '/member/list/'.concat(parseInt(result)).concat('/');
+            window.location.href = url;
+        });
+    } else {
+        location.reload();
+    }
 }
 
 function addNewList(list_title, callback) {
@@ -407,6 +411,11 @@ function init() {
     var element = document.getElementById('select_list');
     if(element !== null) {
         element.addEventListener('click', selectList);
+    }
+
+    var element = document.getElementById('create_list');
+    if(element !== null) {
+        element.addEventListener('click', promptNewList);
     }
 
     var elements = document.getElementsByClassName('item_title');

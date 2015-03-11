@@ -61,6 +61,7 @@ nav {
 
 nav ul {
     border: 1px solid black;
+    border: 1px solid #aaa;
     display: none;
     list-style: none;
     position: absolute;
@@ -69,8 +70,8 @@ nav ul {
 
 nav ul li {
     background-color: white;
-    border-bottom: 1px solid black;
-    font-size: 16px;
+    border-bottom: 1px solid #aaa;
+    font-size: 14px;
 }
 
 nav ul li:last-child {
@@ -79,7 +80,7 @@ nav ul li:last-child {
 
 nav ul li a {
     display: block;
-    padding: 4px 8px;
+    padding: 3px 6px;
 }
 
 nav ul li a:hover {

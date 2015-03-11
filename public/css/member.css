@@ -58,3 +58,7 @@ table tr td {
 table tr td:nth-child(2) {
     width: 50px;
 }
+
+div#no_lists {
+//    margin-top: 20px;
+}

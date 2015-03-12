@@ -372,11 +372,6 @@
         <state line="6" column="53" selection-start="247" selection-end="247" vertical-scroll-proportion="0.19757366" vertical-offset="0" max-vertical-offset="577" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="28" selection-start="253" selection-end="253" vertical-scroll-proportion="0.30427048" vertical-offset="0" max-vertical-offset="589" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/loader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="5" selection-start="292" selection-end="292" vertical-scroll-proportion="0.40569395" vertical-offset="0" max-vertical-offset="562" />

@@ -24,11 +24,11 @@ class SessionController extends \Phalcon\Mvc\Controller {
             $this->session->set('auth', True);
             $this->response->redirect('member/');
         } else {
+
             if(empty($username) || empty($password)) {
                 $this->flash->error('Both fields are required');
             }
 
-            $this->session->destroy();
             $this->flash->error('Wrong username or password');
             $this->response->redirect('');
         }

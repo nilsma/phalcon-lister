@@ -30,22 +30,10 @@ class InvitationsController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $lists = Lists::find(array(
-                "conditions" => "owner_id = ?1",
-                "bind" => array(1 => $user->id),
-                "order" => "title"
-            ));
-
-            $inviter = $this->getInvitationsAsInviter($user->id);
             $invited = $this->getInvitationsAsInvited($user->id);
-            $memberships = $this->getMemberships($user->id);
 
-            $this->view->setVar("invitationsForm", new InvitationsForm($lists));
             $this->view->setVar("user", $user);
-            $this->view->setVar("inviter", $inviter);
             $this->view->setVar("invited", $invited);
-            $this->view->setVar("memberships", $memberships);
-            $this->view->setVar("lists", $lists);
 
         }
 

@@ -1,5 +1,6 @@
 <?php $this->partial('partials/publicHeader'); ?>
 <div class="login_form">
+    <?php $this->flash->output(); ?>
     <form name="register" method="POST" action="/session/register/">
         <?php echo $form->render('username') . "\n"; ?>
         <?php echo $form->render('email') . "\n"; ?>
@@ -10,5 +11,4 @@
             <?php echo Phalcon\Tag::linkTo("", "Login"); ?>
         </div>
     </form>
-    <p><?php $this->flashSession->output(); ?></p>
 </div>

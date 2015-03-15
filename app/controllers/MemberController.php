@@ -162,7 +162,7 @@ class MemberController extends ControllerBase
             if($this->session->has("user")) {
                 $user = unserialize($this->session->get("user"));
             } else {
-                $this->flash->error('Something went wrong fetching user');
+                $this->flashDirect->error('Something went wrong fetching user');
                 $this->response->redirect('');
             }
 
@@ -174,9 +174,9 @@ class MemberController extends ControllerBase
             $list->owner_id = $user->id;
             $list->title = $filter->sanitize($this->request->getPost('list_title'), "string");
 
-            if(empty($list->title)) {
+            if(empty($list->title) || strlen($list->title) < 1) {
 
-                $this->flash->error('You have to enter a list title');
+                $this->flashDirect->error('You have to enter a list title');
                 $this->response->redirect('member/');
 
             } else {
@@ -312,19 +312,30 @@ class MemberController extends ControllerBase
             $list = Lists::findFirst(array("list_id" => $list_id));
             $member = Members::findFirst(array("list_id" => $list_id, "member_id" => $user->id));
 
-            $item = new Items();
-            $item->id = NULL;
-            $item->list_id = $list_id;
-            $item->name = $item_name;
-            $item->tapped = false;
+            $form = new AddItemForm($list);
 
-            if($list->owner_id = $user->id || $member) {
+            if($form->isValid($_POST)) {
 
-                $item->save();
+                $item = new Items();
+                $item->id = NULL;
+                $item->list_id = $list_id;
+                $item->name = $item_name;
+                $item->tapped = false;
+
+                if($list->owner_id = $user->id || $member) {
+
+                    $item->save();
+
+                }
+
+                $this->response->redirect('member/');
+
+            } else {
+
+                $this->flash->error('You forgot to add a name for the item');
+                $this->response->redirect('member/');
 
             }
-
-            $this->response->redirect('member/');
 
         } else {
             $this->flash->error('Something went wrong fetching user');

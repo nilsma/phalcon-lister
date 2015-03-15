@@ -83,6 +83,86 @@ class EditController extends ControllerBase
 
     }
 
+    public function inviteUserAction() {
+
+        if($this->request->isPost()) {
+
+            $this->view->disable();
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $filter = new Filter();
+
+            $list_id = $this->request->getPost('invite_list_id');
+            $username_to_invite = $filter->sanitize($this->request->getPost('invite_username'), "string");
+
+            $user_to_invite = Users::findFirst("username = \"{$username_to_invite}\"");
+
+            $invitations = Invitations::find(array(
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND invited_id = ?3",
+                "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
+                "limit" => 1
+            ));
+
+            $members = Members::find(array(
+                "conditions" => "owner_id = ?1 AND list_id = ?2 AND member_id = ?3",
+                "bind" => array(1 => $user->id, 2 => $list_id, 3 => $user_to_invite->id),
+                "limit" => 1
+            ));
+
+            if(count($invitations) > 0) {
+                $invitation = $invitations[0];
+            } else {
+                $new_invitation = NULL;
+            }
+
+            if(count($members) > 0) {
+                $member = $members[0];
+            } else {
+                $member = NULL;
+            }
+
+            if($member || !$user_to_invite) {
+
+                if($member) {
+                    $this->flash->error("{$user_to_invite->username} is already a member of this list");
+                }
+
+                if(!$user_to_invite) {
+                    $this->flash->error("The user {$username_to_invite} does not exist");
+                }
+
+            } else {
+
+                if($invitation) {
+                    $this->flash->success("You have invited {$user_to_invite->username}");
+                } else {
+
+                    $new_invitation = new Invitations();
+
+                    $new_invitation->id = NULL;
+                    $new_invitation->owner_id = $user->id;
+                    $new_invitation->list_id = $list_id;
+                    $new_invitation->invited_id = $user_to_invite->id;
+
+                    $new_invitation->save();
+
+                    $this->flash->success("You have invited {$user_to_invite->username}");
+
+                }
+            }
+
+        }
+
+        return $this->response->redirect('edit/users/' . $list_id . '/');
+
+    }
+
     public function deleteListAction() {
 
         if($this->request->isPost()) {
@@ -138,6 +218,161 @@ class EditController extends ControllerBase
             }
 
         }
+
+    }
+
+    private function validateOwnership($list, $user) {
+
+        $isMember = false;
+
+        $ownerships = Lists::find(array(
+            "conditions" => "id = ?1 AND owner_id = ?2",
+            "bind" => array(1 => $list->id, 2 => $user->id),
+            "limit" => 1
+        ));
+
+        if(count($ownerships) > 0) {
+
+            $isMember = true;
+
+        }
+
+        return $isMember;
+
+    }
+
+    public function listAction() {
+
+        $this->assets->addCss('css/main.css');
+        $this->assets->addCss('css/editlist.css');
+        $this->assets->addJs('js/main.js');
+        $this->assets->addJs('js/jquery-2.1.3.min.js');
+
+        if(!$this->session->has('auth') || $this->session->get('auth') == null) {
+
+            $this->flash->error('You have to login first');
+            return $this->response->redirect('');
+
+        } else {
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+                $this->view->setVar('user', $user);
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $params = $this->dispatcher->getParams();
+
+            if(count($params) > 0) {
+                $list_id = $params[0];
+            } else {
+                return $this->response->redirect('edit/');
+            }
+
+            $list = Lists::findFirst("id = {$list_id}");
+
+            if($this->validateOwnership($list, $user)) {
+
+                $members = Members::find("list_id = {$list_id}");
+
+                $this->view->setVar('editListForm', new EditListForm($list));
+                $this->view->setVar('list', $list);
+                $this->view->setVar('members', $members);
+
+            } else {
+
+                $this->flash->error('You are not the owner of that list');
+                return $this->response->redirect('edit');
+
+            }
+
+        }
+    }
+
+    public function usersAction() {
+
+        $this->assets->addCss('css/main.css');
+        $this->assets->addCss('css/users.css');
+        $this->assets->addJs('js/main.js');
+        $this->assets->addJs('js/jquery-2.1.3.min.js');
+
+        if(!$this->session->has('auth') || $this->session->get('auth') == null) {
+
+            $this->flash->error('You have to login first');
+            return $this->response->redirect('');
+
+        } else {
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+                $this->view->setVar('user', $user);
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $params = $this->dispatcher->getParams();
+
+            if(count($params) > 0) {
+                $list_id = $params[0];
+            } else {
+                return $this->response->redirect('edit/');
+            }
+
+            $list = Lists::findFirst("id = {$list_id}");
+
+            if($this->validateOwnership($list, $user)) {
+
+                $members = Members::find("list_id = {$list_id}");
+
+                $this->view->setVar('invitationsForm', new InvitationsForm($list));
+                $this->view->setVar('editListForm', new EditListForm($list));
+                $this->view->setVar('list', $list);
+                $this->view->setVar('members', $members);
+
+            } else {
+
+                $this->flash->error('You are not the owner of that list');
+                return $this->response->redirect('edit');
+
+            }
+
+        }
+    }
+
+    public function saveTitleAction() {
+
+        if($this->request->isPost()) {
+
+            if($this->session->has("user")) {
+                $user = unserialize($this->session->get("user"));
+            } else {
+                $this->flash->error('Something went wrong fetching user');
+                $this->response->redirect('');
+            }
+
+            $filter = new Filter();
+
+            $list = Lists::findFirst("id = {$this->request->getPost('list_id')}");
+            $new_title = $filter->sanitize($this->request->getPost('new_title'), "string");
+
+            if(strlen($new_title) > 0) {
+
+                $list->title = $new_title;
+                $list->save();
+
+            } else {
+
+                $this->flash->error('Something went wrong setting new title');
+                $this->response->redirect('edit/');
+
+            }
+
+        }
+
+        return $this->response->redirect('edit/list/' . $list->id . '/');
 
     }
 

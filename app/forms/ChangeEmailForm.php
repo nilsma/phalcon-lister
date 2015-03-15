@@ -3,6 +3,9 @@
 use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\Submit;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\StringLength;
+use Phalcon\Validation\Validator\Confirmation;
 
 class ChangeEmailForm extends Form {
 
@@ -13,6 +16,12 @@ class ChangeEmailForm extends Form {
             'value' => $user->email
         ));
 
+        $current_email->addValidator(
+            new PresenceOf(array(
+                'message' => 'You have to state your current email'
+            ))
+        );
+
         $this->add($current_email);
 
         $new_email = new Email('new_email', array(
@@ -20,12 +29,33 @@ class ChangeEmailForm extends Form {
             'maxlength' => 50
         ));
 
+        $new_email->addValidator(
+            new StringLength(array(
+                'max' => 50,
+                'min' => 7
+            ))
+        );
+
         $this->add($new_email);
 
         $repeat_email = new Email('repeat_email', array(
             'placeholder' => 'Repeat Email',
             'maxlength' => 50
         ));
+
+        $repeat_email->addValidator(
+            new StringLength(array(
+                'max' => 50,
+                'min' => 7
+            ))
+        );
+
+        $repeat_email->addValidator(
+            new Confirmation(array(
+                'message' => 'The emails must match',
+                'with' => 'new_email'
+            ))
+        );
 
         $this->add($repeat_email);
 

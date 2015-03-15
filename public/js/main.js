@@ -14,7 +14,7 @@ function toggleItemTap() {
             if(result) {
                 tapItemHTML(element, tapped);
             } else {
-                alert('failure');
+                //TODO add error message
                 location.reload();
             }
         });
@@ -239,7 +239,7 @@ function initDeleteList() {
 }
 
 function getListIdToDelete(element, callback) {
-    var list_id = element.parentNode.parentNode.childNodes[3].childNodes[1].childNodes[1].value;
+    var list_id = element.parentNode.getAttribute('id').substr(1);
     callback(encodeURIComponent(list_id));
 }
 
@@ -310,10 +310,21 @@ function deleteItem(list_id, item_id, callback) {
 }
 
 function selectList() {
+
+    //TODO refactor
+    var list_form = document.getElementById('select_list');
+    var selected_list_on_load = 0;
+
+    for(var i = 0; i < list_form.options.length; i++) {
+        if(list_form.options[i].selected) {
+            selected_list_on_load = list_form.options[i].value;
+        }
+    }
+
     $(this).on('change', function() {
         var value = $(this).val();
         if(parseInt(value) === 0) {
-            promptNewList();
+            promptNewList(list_form, selected_list_on_load);
         } else {
             var url = '/member/list/'.concat(value).concat('/');
             window.location.href = url;
@@ -321,15 +332,28 @@ function selectList() {
     });
 }
 
-function promptNewList() {
+function promptNewList(list_form, selected_list) {
+
+    //TODO refactor
     var new_title = prompt("New List Title: ", "");
-    if(new_title != null) {
+    if(new_title != null && new_title.length > 0) {
         addNewList(new_title, function(result) {
             var url = '/member/list/'.concat(parseInt(result)).concat('/');
             window.location.href = url;
         });
     } else {
-        location.reload();
+        var outer_div = document.getElementById('messages');
+        var message = 'You forgot to add a list name';
+        var inner_div = document.createElement('div');
+        inner_div.className = "alert alert-error";
+        inner_div.innerHTML = message;
+        outer_div.appendChild(inner_div);
+
+        for(var i = 0; i < list_form.options.length; i++) {
+            if(list_form.options[i].value === selected_list) {
+                list_form.options[i].selected = true;
+            }
+        }
     }
 }
 
@@ -350,7 +374,7 @@ function addNewList(list_title, callback) {
     }
 
     var params = "list_title=".concat(list_title);
-    xmlhttp.open("POST", "/member/addList", true);
+    xmlhttp.open("POST", "/member/addList", false);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(params);
 }

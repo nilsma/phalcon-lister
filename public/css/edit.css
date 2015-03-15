@@ -6,7 +6,6 @@ div#add_list_form {
 }
 
 div#add_list_form input[type="submit"] {
-    margin-top: -10px;
     margin-left: 15px;
 }
 
@@ -16,19 +15,32 @@ div#lists {
     align-items: center;
 }
 
-table {
+div#lists ul {
+    list-style: none;
     width: 100%;
 }
 
-table tr:nth-child(odd) {
-    background-color: #ddd;
-}
-
-table tr td {
+div#lists ul li {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 4px 8px;
 }
 
-table tr td:nth-child(2),
-table tr td:nth-child(3) {
-    width: 50px;
+div#lists div.holder > a,
+div#lists div.holder > button {
+    margin-left: 10px;
+}
+
+div#lists ul li p {
+    margin: 0;
+}
+
+div#lists ul li:last-child {
+    margin-bottom: 0;
+}
+
+div#lists li:nth-child(odd) {
+    background-color: #ddd;
 }

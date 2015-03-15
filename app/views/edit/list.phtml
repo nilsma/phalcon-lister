@@ -3,7 +3,7 @@
     <?php echo $this->flash->output(); ?>
     <div id="edit_list">
 
-        <?php echo Phalcon\Tag::form(array("editlist/saveTitle", "method" => "post", "name" => "edit_list")) . "\n"; ?>
+        <?php echo Phalcon\Tag::form(array("edit/saveTitle", "method" => "post", "name" => "edit_list")) . "\n"; ?>
         <?php echo $editListForm->label('current_title') . "\n"; ?>
         <?php echo $editListForm->render('current_title') . "\n"; ?>
         <?php echo $editListForm->label('new_title') . "\n"; ?>
@@ -16,6 +16,8 @@
         <?php echo Phalcon\Tag::endForm() . "\n"; ?>
 
     </div>
+
+    <!--
     <div id="members">
         <h3>Members of this list</h3>
         <div>
@@ -48,4 +50,6 @@
 
             ?>
         </div>
+        -->
+
     </div>

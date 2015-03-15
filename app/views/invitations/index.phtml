@@ -1,17 +1,6 @@
 <?php $this->partial('partials/memberHeader'); ?>
 <div>
-    <?php echo $this->flashSession->output(); ?>
-    <div id="invite">
-        <h3>Create new invitation</h3>
-
-        <?php echo Phalcon\Tag::form(array("invitations/inviteUser", "method" => "post", "name" => "new_invitation")) . "\n"; ?>
-        <?php echo $invitationsForm->label('invite_username') . "\n"; ?>
-        <?php echo $invitationsForm->render('invite_username') . "\n"; ?>
-        <?php echo $invitationsForm->render('select') . "\n"; ?>
-        <?php echo $invitationsForm->render('Invite') . "\n"; ?>
-        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
-
-    </div>
+    <?php echo $this->flash->output(); ?>
     <div id="invited">
         <h3>Your invitations</h3>
         <?php
@@ -35,74 +24,6 @@
                 $html .= '<td>You have been invited by ' . $inv['username'] . ' to the list <span id="i' . $inv['list_id'] . '">' . $inv['list_title'] . '</span></td>' . "\n";
                 $html .= '<td><button class="btn btn-success btn-small accept_invited pull-right"><i class="icon-white icon-ok icon-accept"></i> </button></td>' . "\n";
                 $html .= '<td><button class="btn btn-danger btn-small delete_invited pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
-                $html .= '</tr>' . "\n";
-
-            }
-
-        }
-
-        $html .= '</table>' . "\n";
-
-        echo $html;
-
-        ?>
-    </div>
-    <div id="memberships">
-        <h3>Your memberships</h3>
-        <?php
-
-        $html = '';
-
-        $html .= '<table>' . "\n";
-        //TODO add table head
-
-        if(count($memberships) < 1) {
-
-            $html .= '<tr>' . "\n";
-            $html .= '<td>You are not yet member of any lists</td>' . "\n";
-            $html .= '</tr>' . "\n";
-
-        } else {
-
-            foreach($memberships as $m) {
-
-                $html .= '<tr>' . "\n";
-                $html .= '<td>You are currently subscribing to ' . $m['username'] . '\'s list <span id="i' . $m['list_id'] . '">' . $m['list_title'] . '</span></td>' . "\n";
-                $html .= '<td><button class="btn btn-danger btn-small delete_membership pull-right"><i class="icon-white icon-remove"></i> </button></td>'. "\n";
-                $html .= '</tr>' . "\n";
-
-            }
-
-        }
-
-        $html .= '</table>' . "\n";
-
-        echo $html;
-
-        ?>
-    </div>
-    <div id="inviter">
-        <h3>Others invitations</h3>
-        <?php
-
-        $html = '';
-
-        $html .= '<table>' . "\n";
-        //TODO add table head
-
-        if(count($inviter) < 1) {
-
-            $html .= '<tr>' . "\n";
-            $html .= '<td>You have not invited anyone to any lists at the moment</td>' . "\n";
-            $html .= '</tr>' . "\n";
-
-        } else {
-
-            foreach($inviter as $i) {
-
-                $html .= '<tr>' . "\n";
-                $html .= '<td>You have invited <span id="i' . $i['user_id'] . '">' . $i['username'] . '</span> to your list <span id="i' . $i['list_id'] . '">' . $i['list_title'] . '</span>' . "\n";
-                $html .= '<td><button class="btn btn-danger btn-small delete_inviter pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
                 $html .= '</tr>' . "\n";
 
             }

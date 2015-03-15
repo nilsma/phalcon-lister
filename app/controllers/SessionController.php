@@ -27,9 +27,10 @@ class SessionController extends \Phalcon\Mvc\Controller {
 
             if(empty($username) || empty($password)) {
                 $this->flash->error('Both fields are required');
+            } else {
+                $this->flash->error('Wrong username or password');
             }
 
-            $this->flash->error('Wrong username or password');
             $this->response->redirect('');
         }
 
@@ -45,11 +46,11 @@ class SessionController extends \Phalcon\Mvc\Controller {
 
         $form = new RegisterForm();
 
-        if($form->isValid($this->request->getPost())) {
+        $username_exists = Users::findFirst('username = "' . $this->request->getPost('username') . '"');
+        $email_exists = Users::findFirst('email = "' . $this->request->getPost('email') . '"');
+        $password_match = ($this->request->getPost('password') == $this->request->getPost('repeat'));
 
-            $username_exists = Users::findFirst('username = "' . $this->request->getPost('username') . '"');
-            $email_exists = Users::findFirst('email = "' . $this->request->getPost('email') . '"');
-            $password_match = ($this->request->getPost('password') == $this->request->getPost('repeat'));
+        if($form->isValid($this->request->getPost())) {
 
             if(
                 !$username_exists &&
@@ -100,16 +101,42 @@ class SessionController extends \Phalcon\Mvc\Controller {
                     $this->flash->error('You have to repeat the password');
                 }
 
-                $this->session->destroy();
-                return $this->response->redirect('register');
+                $this->response->redirect('/register');
 
             }
 
         } else {
-            $messages = $form->getMessages();
-            foreach($messages as $message) {
-                echo $message . '<br/>';
+
+            if($username_exists) {
+                $this->flash->error('Username already exists');
             }
+
+            if(empty($username)) {
+                $this->flash->error('Username is required');
+            }
+
+            if($email_exists) {
+                $this->flash->error('Email already exists');
+            }
+
+            if(empty($email)) {
+                $this->flash->error('Email is required');
+            }
+
+            if(empty($password)) {
+                $this->flash->error('Password is required');
+            }
+
+            if(!$password_match) {
+                $this->flash->error('The passwords does not match');
+            }
+
+            if(empty($repeat)) {
+                $this->flash->error('You have to repeat the password');
+            }
+
+            return $this->response->redirect('register/');
+
         }
 
     }

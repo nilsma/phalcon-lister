@@ -1,4 +1,3 @@
-File Edit Options Buffers Tools PHP C Help
 <?php
 
 use Phalcon\Forms\Form;

@@ -19,7 +19,7 @@ class AddListForm extends Form {
 
         $submit = new Submit('Add', array(
             'value' => 'Add',
-            'class' => 'btn btn-primary'
+            'class' => 'btn btn-primary pull-right'
         ));
 
         $this->add($submit);

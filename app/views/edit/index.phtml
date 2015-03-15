@@ -1,6 +1,6 @@
 <?php $this->partial('partials/memberHeader'); ?>
 <div>
-    <?php echo $this->flashSession->output(); ?>
+    <?php echo $this->flash->output(); ?>
     <div id="add_list_form">
 
         <?php echo Phalcon\Tag::form(array("edit/addList", "method" => "post", "name" => "add_list")) . "\n"; ?>
@@ -21,31 +21,26 @@
 
         } else {
 
-            $html .= '<table>' . "\n";
-            //TODO add table header
+            $html .= '<ul>' . "\n";
 
             foreach($lists as $list) {
 
-                $url = '/member/list/' . $list->id . '/';
+                $member_url = '/member/list/' . $list->id . '/';
+                $editlist_url = '/editlist/list/' . $list->id . '/';
 
-                $html .= '<tr>' . "\n";
-                $html .= '<td><a href="' . $url . '">' . $list->title . '</a></td>' . "\n";
+                $html .= '<li id="l' . $list->id . '">' . "\n";
+                $html .= '<p><a href="' . $member_url . '">' . $list->title . '</a></p>' . "\n";
+                $html .= '<div class="holder">' . "\n";
+                $html .= '<a href="/edit/users/' . $list->id . '/" class="btn btn-warning btn-small"><i class="icon-white icon-user"></i></a>' . "\n";
+                $html .= '<a href="/edit/list/' . $list->id . '/" class="btn btn-warning btn-small"><i class="icon-white icon-edit"></i></a>' . "\n";
+                $html .= '<button class="btn btn-danger btn-small delete_list"><i class="icon-white icon-remove"></i> </button>' . "\n";
+                $html .= '</div>' . "\n";
 
-                $html .= '<td>' . "\n";
-                $html .= '<form name="edit_list_' . $list->id . '" action="editlist/" method="post">' . "\n";
-                $html .= '<input name="edit_list_id" value="' . $list->id . '" hidden>' . "\n";
-                $html .= '<input id="edit_submit_' . $list->id . '" name="edit_list" type="submit" hidden>' . "\n";
-                $html .= '<label for="edit_submit_' . $list->id . '" class="btn pull-right btn-warning btn-small"><i class="icon-white icon-edit"></i></label>';
-                $html .= '</form>' . "\n";
+                $html .= '</li>' . "\n";
 
-                $html .= '</td>' . "\n";
-
-                $html .= '<td><button class="btn btn-danger btn-small delete_list pull-right"><i class="icon-white icon-remove"></i> </button></td>' . "\n";
-                $html .= '</tr>' . "\n";
             }
 
-            $html .= '</table>' . "\n";
-
+            $html .= '</ul>' . "\n";
         }
 
         echo $html;

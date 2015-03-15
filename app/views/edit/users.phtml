@@ -1,0 +1,52 @@
+<?php $this->partial('partials/memberHeader'); ?>
+<div>
+    <?php echo $this->flash->output(); ?>
+    <div id="invite">
+
+        <?php echo Phalcon\Tag::form(array("edit/inviteUser/", "method" => "post", "name" => "new_invitation")) . "\n"; ?>
+        <?php echo $invitationsForm->label('invite_username') . "\n"; ?>
+        <?php echo $invitationsForm->render('invite_username') . "\n"; ?>
+        <?php echo $invitationsForm->render('invite_list_id') . "\n"; ?>
+        <?php echo $invitationsForm->render('Invite') . "\n"; ?>
+        <?php echo Phalcon\Tag::endForm() . "\n"; ?>
+
+    </div>
+
+    <div id="members">
+        <?php
+
+        $html = '';
+
+        if(count($members) < 1) {
+
+            $html .= '<p>There are no members to this list yet</p>' . "\n";
+
+        } else {
+
+            $html .= '<ul>' . "\n";
+
+            foreach($members as $member) {
+
+                $user = Users::findFirst("id = {$member->member_id}");
+
+                $html .= '<li id="i' . $user->id . '">' ."\n";
+                $html .= '<span>' . $user->username . '</span>' . "\n";
+                $html .= '<div class="holder">' . "\n";
+                $html .= '<button class="btn btn-danger btn-small delete_list"><i class="icon-white icon-remove"></i> </button>' . "\n";
+                $html .= '</div>' . "\n";
+                $html .= '</li>' . "\n";
+
+            }
+
+            $html .= '</ul>' . "\n";
+
+        }
+
+        echo $html;
+
+        ?>
+
+        <a class="btn btn-danger" id="cancel" href="/edit/">Back</a>
+
+    </div>
+</div>

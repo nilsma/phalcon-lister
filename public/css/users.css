@@ -1,0 +1,27 @@
+div#members,
+div#invite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div#invite input[type="submit"] {
+    margin-left: 15px;
+}
+
+div#members ul {
+    list-style: none;
+    width: 100%;
+}
+
+div#members ul li {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 8px;
+}
+
+div#members li:nth-child(odd) {
+    background-color: #ddd;
+}

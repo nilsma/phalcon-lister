@@ -29,10 +29,10 @@
 
                 $user = Users::findFirst("id = {$member->member_id}");
 
-                $html .= '<li id="i' . $user->id . '">' ."\n";
+                $html .= '<li id="u' . $user->id . '">' ."\n";
                 $html .= '<span>' . $user->username . '</span>' . "\n";
                 $html .= '<div class="holder">' . "\n";
-                $html .= '<button class="btn btn-danger btn-small delete_list"><i class="icon-white icon-remove"></i> </button>' . "\n";
+                $html .= '<button class="btn btn-danger btn-small delete_member"><i class="icon-white icon-remove"></i> </button>' . "\n";
                 $html .= '</div>' . "\n";
                 $html .= '</li>' . "\n";
 

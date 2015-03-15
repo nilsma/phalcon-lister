@@ -195,12 +195,12 @@ function initDeleteMember() {
 }
 
 function getDeleteMemberListId(callback) {
-    var list_id = document.getElementsByName('list_id')[0].value;
+    var list_id = document.getElementById('invite_list_id').value;
     callback(encodeURIComponent(list_id));
 }
 
 function getMemberIdToDelete(element, callback) {
-    var member_id = element.parentNode.parentNode.childNodes[1].childNodes[0].getAttribute('id').substring(1);
+    var member_id = element.parentNode.parentNode.getAttribute('id').substring(1);
     callback(encodeURIComponent(member_id));
 }
 
@@ -223,7 +223,7 @@ function deleteMember(list_id, member_id, callback) {
     var param1 = "list_id=".concat(list_id);
     var param2 = "&member_id=".concat(member_id);
     var params = param1.concat(param2);
-    xmlhttp.open("POST", "../editList/deleteMember", true);
+    xmlhttp.open("POST", "/edit/deleteMember", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send(params);
 }
@@ -239,7 +239,7 @@ function initDeleteList() {
 }
 
 function getListIdToDelete(element, callback) {
-    var list_id = element.parentNode.getAttribute('id').substr(1);
+    var list_id = element.parentNode.parentNode.getAttribute('id').substring(1);
     callback(encodeURIComponent(list_id));
 }
 

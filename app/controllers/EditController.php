@@ -240,6 +240,8 @@ class EditController extends ControllerBase
 
                     $transaction->commit();
 
+                    $this->flash->success('Invitation has been declined');
+
                 } catch(Phalcon\Mvc\Model\Transaction\Failed $e) {
 
                     echo 'Failed, reason: ', $e->getMessage();

@@ -30,118 +30,39 @@ class InvitationsController extends ControllerBase
                 $this->response->redirect('');
             }
 
-            $invited = $this->getInvitationsAsInvited($user->id);
+            $invitations = Invitations::find(array(
+                "conditions" => "invited_id = ?1",
+                "bind" => array(1 => $user->id)
+            ));
 
             $this->view->setVar("user", $user);
-            $this->view->setVar("invited", $invited);
+            $this->view->setVar("invitations", $invitations);
 
         }
 
     }
 
-    private function getMemberships($member_id) {
-
-        $memberships = Members::find("member_id = {$member_id}");
-
-        $mships = array();
-
-        foreach($memberships as $m) {
-
-            $m_user = Users::findFirst("id = {$m->owner_id}");
-            $m_list = Lists::findFirst("id = {$m->list_id}");
-
-            $mship = array(
-                'owner_id' => $m_user->id,
-                'username' => $m_user->username,
-                'list_id' => $m_list->id,
-                'list_title' => $m_list->title
-            );
-
-            array_push($mships, $mship);
-
-        }
-
-        return $mships;
-
-    }
-
-    private function getInvitationsAsInvited($user_id) {
-
-        $invitations = Invitations::find("invited_id = {$user_id}");
-
-        $invs = array();
-
-        foreach($invitations as $i) {
-
-            $inviter = Users::findFirst("id = {$i->owner_id}");
-            $inv_list = Lists::findFirst("id = {$i->list_id}");
-
-            $inv = array(
-                'username' => $inviter->username,
-                'list_id' => $inv_list->id,
-                'list_title' => $inv_list->title
-            );
-
-            array_push($invs, $inv);
-
-        }
-
-        return $invs;
-
-    }
-
-    private function getInvitationsAsInviter($user_id) {
-
-        $invitations = Invitations::find("owner_id = {$user_id}");
-
-        $invs = array();
-
-        foreach($invitations as $i) {
-
-            $inv_user = Users::findFirst("id = {$i->invited_id}");
-            $inv_list = Lists::findFirst("id = {$i->list_id}");
-
-            $inv = array(
-                'user_id' => $inv_user->id,
-                'username' => $inv_user->username,
-                'list_id' => $inv_list->id,
-                'list_title' => $inv_list->title
-            );
-
-            array_push($invs, $inv);
-
-        }
-
-        return $invs;
-
-    }
-
-    public function acceptInvitedAction() {
+    public function acceptInvitationAction() {
 
         if($this->request->isPost()) {
 
-            if($this->session->has("user")) {
+            if($this->session->has("user") && $this->session->get("auth") == true) {
                 $user = unserialize($this->session->get("user"));
             } else {
                 $this->flash->error('Something went wrong fetching user');
                 $this->response->redirect('');
             }
 
+            $invitation_id = $this->request->get("invitation_to_accept");
+            $invitation = Invitations::findFirst("id = {$invitation_id}");
+
             $transactionManager = new TransactionManager();
             $transaction = $transactionManager->get();
 
-            $list_id = $this->request->getPost('list_id');
-
-            $invitations = Invitations::find(array(
-                "conditions" => "list_id = ?1 AND invited_id = ?2",
-                "bind" => array(1 => $list_id, 2 => $user->id),
-                "limit" => 1
-            ));
-
             $member = new Members();
             $member->id = NULL;
-            $member->owner_id = $invitations[0]->owner_id;
-            $member->list_id = $list_id;
+            $member->owner_id = $invitation->owner_id;
+            $member->list_id = $invitation->list_id;
             $member->member_id = $user->id;
 
             try {
@@ -150,14 +71,17 @@ class InvitationsController extends ControllerBase
                     $transaction->rollback("Failed member save");
                 }
 
-                if($invitations[0]->delete() == false) {
+                if($invitation->delete() == false) {
                     $transaction->rollback("Failed invitation delete");
                 }
 
-            } catch(\Phalcon\Mvc\Model\Transaction\Failed $e) {
+                $this->flash->success('New list membership added');
+                $this->response->redirect('invitations/');
 
-                $this->flash->error('Something went wrong with accepting the invitation');
-                $this->response->redirect('');
+            } catch(Phalcon\Exception $e) {
+
+                $this->flash->error('Something went wrong with accepting the invitation' . $e->getMessage());
+                $this->response->redirect('invitations/');
 
             }
 
@@ -165,22 +89,32 @@ class InvitationsController extends ControllerBase
 
     }
 
-    public function deleteInvitedAction() {
+    public function deleteInvitationAction() {
 
         if($this->request->isPost()) {
 
-            if($this->session->has("user")) {
+            if($this->session->has("user") && $this->session->get("auth") == true) {
                 $user = unserialize($this->session->get("user"));
             } else {
                 $this->flash->error('Something went wrong fetching user');
                 $this->response->redirect('');
             }
 
-            $list_id = $this->request->getPost('list_id');
-            $user_id = $user->id;
+            $invitation_id = $this->request->getPost('invitation_to_delete');
+            $invitation = Invitations::findFirst("id = {$invitation_id}");
 
-            $sql = "DELETE FROM Invitations WHERE list_id = :list_id: AND invited_id = :invited_id:";
-            $this->modelsManager->executeQuery($sql, array('list_id' => $list_id, 'invited_id' => $user_id));
+            try {
+
+                $invitation->delete();
+                $this->flash->error('You have declined the invitation');
+
+                $this->response->redirect('invitations/');
+
+            } catch(\Phalcon\Exception $e) {
+
+                echo 'Something went wrong: ' . $e->getMessage();
+
+            }
 
         }
 

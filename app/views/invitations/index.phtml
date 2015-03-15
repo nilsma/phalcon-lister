@@ -3,6 +3,55 @@
     <?php echo $this->flash->output(); ?>
     <div id="invited">
         <h3>Your invitations</h3>
+
+        <?php
+
+        $html = '';
+
+        if(count($invitations) < 1) {
+
+            $html .= '<p>There are no invitations for you at the moment</p>' . "\n";
+
+        } else {
+
+            $html .= '<ul>' . "\n";
+
+            foreach($invitations as $invitation) {
+
+                $inviter = Users::findFirst("id = {$invitation->owner_id}");
+                $list = Lists::findFirst("id = {$invitation->list_id}");
+
+                $html .= '<li>' . "\n";
+                $html .= 'You have been invited by ';
+                $html .= $inviter->username;
+                $html .= ' to the list ';
+                $html .= $list->title . "\n";
+
+                $html .= Phalcon\Tag::form(array("invitations/acceptInvitation", "method" => "post", "name" => "accept_invitation_{$invitation->id}")) . "\n";
+                $html .= '<input name="invitation_to_accept" type="hidden" value="' . $invitation->id . '">' . "\n";
+                $html .= '<label class="btn btn-success btn-small" for="accept_invitation_' . $invitation->id . '"><i class="icon-white icon-ok"></i></label>' . "\n";
+                $html .= '<input type="submit" class="hidden" id="accept_invitation_' . $invitation->id . '">' . "\n";
+                $html .= Phalcon\Tag::endForm() . "\n";
+
+                $html .= Phalcon\Tag::form(array("invitations/deleteInvitation", "method" => "post", "name" => "delete_invitation_{$invitation->id}")) . "\n";
+                $html .= '<input name="invitation_to_delete" type="hidden" value="' . $invitation->id . '">' . "\n";
+                $html .= '<label class="btn btn-danger btn-small" for="delete_invitation_' . $invitation->id . '"><i class="icon-white icon-remove"></i></label>' . "\n";
+                $html .= '<input type="submit" class="hidden" id="delete_invitation_' . $invitation->id . '">' . "\n";
+                $html .= Phalcon\Tag::endForm() . "\n";
+
+                $html .= '</li>' . "\n";
+
+            }
+
+            $html .= '</ul>' . "\n";
+
+        }
+
+        echo $html;
+
+        ?>
+
+        <!--
         <?php
 
         $html = '';
@@ -36,4 +85,6 @@
 
         ?>
     </div>
+    -->
+
 </div>

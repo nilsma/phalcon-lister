@@ -41,9 +41,6 @@ class MemberController extends ControllerBase
                 $this->view->setVar("items", Items::find(array("conditions" => "list_id = ?1", "bind" => array(1 => $list->id))));
                 $this->view->setVar("itemform", new AddItemForm($list));
 
-                /* quick fix redirect to edit */
-                //$this->response->redirect('edit/');
-
             }
 
 

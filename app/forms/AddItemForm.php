@@ -4,14 +4,13 @@ use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Form,
     Phalcon\Forms\Element\Text,
-    Phalcon\Forms\Element\Hidden,
-    Phalcon\Forms\Element\Select;
+    Phalcon\Forms\Element\Hidden;
 
 class AddItemForm extends Form {
 
     public function initialize($list) {
 
-        // Item name
+        // Item name element
         $item_name = new Text('item_name', array(
             'maxlength' => 200,
             'placeholder' => 'Item name'
@@ -25,7 +24,7 @@ class AddItemForm extends Form {
 
         $this->add($item_name);
 
-        // Working list
+        // Working list element
         $working_list = new Hidden('working_list', array(
             'name' => 'working_list',
             'value' => $list->id
@@ -33,7 +32,7 @@ class AddItemForm extends Form {
 
         $this->add($working_list);
 
-        // Submit
+        // Submit element
         $submit = new Submit('Add', array(
             'class' => 'btn btn-primary pull-right'
         ));

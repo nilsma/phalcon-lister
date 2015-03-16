@@ -61,11 +61,6 @@ class ProfileController extends \Phalcon\Mvc\Controller
 
                 if($form->isValid($_POST)) {
 
-//                    $new_password = $this->request->getPost('new_password');
-//                    $repeat_password = $this->request->getPost('repeat_password');
-
-//                    if($new_password == $repeat_password) {
-
                     $user->password = $this->security->hash($new_password);
                     $user->save();
 

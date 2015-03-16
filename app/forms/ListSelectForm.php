@@ -7,6 +7,7 @@ class ListSelectForm extends Form {
 
     public function initialize($user, $list) {
 
+        // create new select element
         $select = new Select('select', Lists::findLists($user->id), array(
             'using' => array('id', 'title'),
             'name' => 'list',

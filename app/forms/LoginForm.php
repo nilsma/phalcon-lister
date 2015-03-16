@@ -11,7 +11,7 @@ class LoginForm extends Form
 {
     public function initialize() {
 
-        // Username
+        // create new username element
         $username = new Text('username', array(
             'placeholder' => 'Username'
         ));
@@ -23,7 +23,7 @@ class LoginForm extends Form
 
         $this->add($username);
 
-        // Password
+        // create new password element
         $password = new Password('password', array(
             'placeholder' => 'Password'
         ));
@@ -34,6 +34,7 @@ class LoginForm extends Form
 
         $this->add($password);
 
+        // create new submit element
         $submit = new Submit('Login', array(
             'class' => 'btn btn-success'
         ));

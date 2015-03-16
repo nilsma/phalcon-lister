@@ -25,6 +25,11 @@ class Lists extends \Phalcon\Mvc\Model
      */
     public $title;
 
+    /**
+     * Gets the lists that the given user owns or is a member of
+     * @param $id - the user id of the given user
+     * @return ResultSet - an object containing Lists
+     */
     public static function findLists($id) {
 
         $sql = "";

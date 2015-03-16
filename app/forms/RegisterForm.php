@@ -14,7 +14,7 @@ class RegisterForm extends Form {
 
     public function initialize() {
 
-        // Username
+        // create new username element
         $username = new Text('username', array(
             'maxlength' => 30,
             'placeholder' => 'Username'
@@ -35,7 +35,7 @@ class RegisterForm extends Form {
 
         $this->add($username);
 
-        // Email
+        // create new email element
         $email = new Email('email', array(
             'maxlength' => 50,
             'placeholder' => 'Email'
@@ -58,7 +58,7 @@ class RegisterForm extends Form {
 
         $this->add($email);
 
-        // Password
+        // create new password element
         $password = new Password('password', array(
             'maxlength' => 16,
             'placeholder' => 'Password'
@@ -79,7 +79,7 @@ class RegisterForm extends Form {
 
         $this->add($password);
 
-        // Repeat
+        // create new repeat password element
         $repeat = new Password('repeat', array(
             'maxlength' => 16,
             'placeholder' => 'Repeat password'
@@ -107,6 +107,7 @@ class RegisterForm extends Form {
 
         $this->add($repeat);
 
+        // create new submit element
         $submit = new Submit('Register', array(
             'class' => 'btn btn-success'
         ));

@@ -7,8 +7,7 @@ use Phalcon\Exception as Exception;
 class EditController extends ControllerBase
 {
 
-    public function indexAction()
-    {
+    public function indexAction() {
 
         $this->assets->addCss('css/main.css');
         $this->assets->addCss('css/edit.css');
@@ -437,27 +436,6 @@ class EditController extends ControllerBase
         }
 
         return $this->response->redirect('edit/list/' . $list->id . '/');
-
-    }
-
-    public function editListAction() {
-
-        if($this->request->isPost()) {
-
-            if($this->session->has("user")) {
-                $user = unserialize($this->session->get("user"));
-            } else {
-                $this->flash->error('Something went wrong fetching user');
-                $this->response->redirect('');
-            }
-
-            $edit_list_id = $this->request->getPost('edit_list_id');
-
-            $this->session->set('edit_list_id', $edit_list_id);
-
-            return $this->response->redirect('editlist/');
-
-        }
 
     }
 

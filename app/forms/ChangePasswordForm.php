@@ -11,6 +11,7 @@ class ChangePasswordForm extends Form {
 
     public function initialize() {
 
+        // Create current password element
         $current_password = new Password('current_password', array(
             'placeholder' => 'Enter password',
             'maxlength' => 16
@@ -24,6 +25,7 @@ class ChangePasswordForm extends Form {
 
         $this->add($current_password);
 
+        // create new password element
         $new_password = new Password('new_password', array(
             'placeholder' => 'New password',
             'maxlength' => 16
@@ -44,6 +46,7 @@ class ChangePasswordForm extends Form {
 
         $this->add($new_password);
 
+        // create repeat password element
         $repeat_password = new Password('repeat_password', array(
             'placeholder' => 'Repeat password',
             'maxlength' => 16
@@ -71,6 +74,7 @@ class ChangePasswordForm extends Form {
 
         $this->add($repeat_password);
 
+        // create submit element
         $submit = new Submit('Change Password', array(
             'value' => 'Change Password',
             'class' => 'btn btn-primary'

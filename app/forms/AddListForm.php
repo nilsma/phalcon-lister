@@ -8,6 +8,7 @@ class AddListForm extends Form {
 
     public function initialize() {
 
+        // List title element
         $list_title = new Text('list_title', array(
             'placeholder' => 'List Title',
             'maxlength' => 50
@@ -17,6 +18,7 @@ class AddListForm extends Form {
 
         $this->add($list_title);
 
+        // submit element
         $submit = new Submit('Add', array(
             'value' => 'Add',
             'class' => 'btn btn-primary pull-right'

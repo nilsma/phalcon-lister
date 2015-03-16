@@ -2,6 +2,7 @@
 
 use Phalcon\Mvc\Model\Transaction\Manager as TransactionManager;
 use Phalcon\Filter as Filter;
+use Phalcon\Exception as Exception;
 
 class EditController extends ControllerBase
 {
@@ -70,10 +71,19 @@ class EditController extends ControllerBase
 
             } else {
 
-                $list->save();
-                $user->last_list = $list->id;
-                $user->save();
-                $this->session->set('user', serialize($user));
+                try {
+
+                    $list->save();
+                    $user->last_list = $list->id;
+                    $user->save();
+                    $this->session->set('user', serialize($user));
+                    $this->flash->success('New list added');
+
+                } catch(Exception $e) {
+
+                    $this->flash->error('Something went wrong when saving list');
+
+                }
 
                 $this->response->redirect('edit/');
 
@@ -189,7 +199,16 @@ class EditController extends ControllerBase
 
             if($members[0]) {
 
-                $members[0]->delete();
+                try {
+
+                    $members[0]->delete();
+                    $this->flash->success('Member deleted');
+
+                } catch(Exception $e) {
+
+                    $this->flash->error('Something went wrong when deleting member: ' . $e->getMessage());
+
+                }
 
             }
 
@@ -240,11 +259,11 @@ class EditController extends ControllerBase
 
                     $transaction->commit();
 
-                    $this->flash->success('Invitation has been declined');
+                    $this->flash->success('List deleted');
 
                 } catch(Phalcon\Mvc\Model\Transaction\Failed $e) {
 
-                    echo 'Failed, reason: ', $e->getMessage();
+                    $this->flash->error('Something went wrong when deleting list: ' . $e->getMessage());
 
                 }
 
@@ -396,12 +415,21 @@ class EditController extends ControllerBase
 
             if(strlen($new_title) > 0) {
 
-                $list->title = $new_title;
-                $list->save();
+                try {
+
+                    $list->title = $new_title;
+                    $list->save();
+                    $this->flash->success('List title updated');
+
+                } catch(Exception $e) {
+
+                    $this->flash->error('Something went wrong setting new title: ' . $e->getMessage());
+
+                }
 
             } else {
 
-                $this->flash->error('Something went wrong setting new title');
+                $this->flash->error('You have to enter a new title');
                 $this->response->redirect('edit/');
 
             }

@@ -1,7 +1,7 @@
 <?php $this->partial('partials/memberHeader'); ?>
 <div>
     <?php echo $this->flash->output(); ?>
-    <div id="invited">
+    <div id="invitations">
         <h3>Your invitations</h3>
 
         <?php
@@ -22,22 +22,32 @@
                 $list = Lists::findFirst("id = {$invitation->list_id}");
 
                 $html .= '<li>' . "\n";
+                $html .= '<div>' . "\n";
+                $html .= '<p>';
                 $html .= 'You have been invited by ';
                 $html .= $inviter->username;
-                $html .= ' to the list ';
-                $html .= $list->title . "\n";
+                $html .= ' to the list: <br/>';
+//                $html .= '</p>' . "\n";
+//                $html .= '<p>' . "\n";
+                $html .= '<span class="list_title">' . $list->title . '</span>' . "\n";
+                $html .= '</p>' . "\n";
+                $html .= '</div>' . "\n";
+
+                $html .= '<div class="holder">' . "\n";
 
                 $html .= Phalcon\Tag::form(array("invitations/acceptInvitation", "method" => "post", "name" => "accept_invitation_{$invitation->id}")) . "\n";
                 $html .= '<input name="invitation_to_accept" type="hidden" value="' . $invitation->id . '">' . "\n";
                 $html .= '<label class="btn btn-success btn-small" for="accept_invitation_' . $invitation->id . '"><i class="icon-white icon-ok"></i></label>' . "\n";
-                $html .= '<input type="submit" class="hidden" id="accept_invitation_' . $invitation->id . '">' . "\n";
+                $html .= '<input class="hidden" type="submit" id="accept_invitation_' . $invitation->id . '">' . "\n";
                 $html .= Phalcon\Tag::endForm() . "\n";
 
                 $html .= Phalcon\Tag::form(array("invitations/deleteInvitation", "method" => "post", "name" => "delete_invitation_{$invitation->id}")) . "\n";
                 $html .= '<input name="invitation_to_delete" type="hidden" value="' . $invitation->id . '">' . "\n";
                 $html .= '<label class="btn btn-danger btn-small" for="delete_invitation_' . $invitation->id . '"><i class="icon-white icon-remove"></i></label>' . "\n";
-                $html .= '<input type="submit" class="hidden" id="delete_invitation_' . $invitation->id . '">' . "\n";
+                $html .= '<input class="hidden" type="submit" id="delete_invitation_' . $invitation->id . '">' . "\n";
                 $html .= Phalcon\Tag::endForm() . "\n";
+
+                $html .= '</div>' . "\n";
 
                 $html .= '</li>' . "\n";
 

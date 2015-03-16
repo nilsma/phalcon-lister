@@ -1,31 +1,43 @@
-label {
-    text-align: left;
-    width: 100%;
-}
-
-div#invite,
-div#invite form {
+div#invitations {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-div#invite form input[type="submit"] {
-    margin-top: 10px;
-}
-
-table {
+div#invitations ul {
+    list-style: none;
     width: 100%;
 }
 
-table tr:nth-child(odd) {
-    background-color: #ddd;
-}
-
-table tr td {
+div#invitations ul li {
+    vertical-align: middle;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding: 4px 8px;
 }
 
-table tr td:nth-child(2) {
-    width: 50px;
+div#invitations ul li p {
+    align-items: center;
+    margin: 0;
+}
+
+span.list_title {
+    font-weight: bold;
+}
+
+div#invitations div.holder {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+div#invitations div.holder > form {
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 0 0 10px;
+}
+
+div#invitations li:nth-child(odd) {
+    background-color: #ddd;
 }

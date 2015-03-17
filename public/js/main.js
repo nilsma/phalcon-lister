@@ -310,29 +310,17 @@ function deleteItem(list_id, item_id, callback) {
 }
 
 function selectList() {
+    var value = document.getElementById('select_list').value;
 
-    //TODO refactor
-    var list_form = document.getElementById('select_list');
-    var selected_list_on_load = 0;
-
-    for(var i = 0; i < list_form.options.length; i++) {
-        if(list_form.options[i].selected) {
-            selected_list_on_load = list_form.options[i].value;
-        }
+    if(parseInt(value) === 0) {
+        promptNewList();
+    } else {
+        var url = '/member/list/'.concat(value).concat('/');
+        window.location.href = url;
     }
-
-    $(this).on('change', function() {
-        var value = $(this).val();
-        if(parseInt(value) === 0) {
-            promptNewList(list_form, selected_list_on_load);
-        } else {
-            var url = '/member/list/'.concat(value).concat('/');
-            window.location.href = url;
-        }
-    });
 }
 
-function promptNewList(list_form, selected_list) {
+function promptNewList() {
 
     //TODO refactor
     var new_title = prompt("New List Title: ", "");
@@ -341,7 +329,9 @@ function promptNewList(list_form, selected_list) {
             var url = '/member/list/'.concat(parseInt(result)).concat('/');
             window.location.href = url;
         });
+
     } else {
+
         var outer_div = document.getElementById('messages');
         var message = 'You forgot to add a list name';
         var inner_div = document.createElement('div');
@@ -349,11 +339,6 @@ function promptNewList(list_form, selected_list) {
         inner_div.innerHTML = message;
         outer_div.appendChild(inner_div);
 
-        for(var i = 0; i < list_form.options.length; i++) {
-            if(list_form.options[i].value === selected_list) {
-                list_form.options[i].selected = true;
-            }
-        }
     }
 }
 
@@ -434,7 +419,7 @@ function init() {
 
     var element = document.getElementById('select_list');
     if(element !== null) {
-        element.addEventListener('click', selectList);
+        element.addEventListener('change', selectList);
     }
 
     var element = document.getElementById('create_list');

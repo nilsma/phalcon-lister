@@ -11,6 +11,7 @@ div#invite input[type="submit"] {
 
 div#members ul {
     list-style: none;
+    margin-bottom: 25px;
     width: 100%;
 }
 

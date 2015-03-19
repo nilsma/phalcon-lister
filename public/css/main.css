@@ -6,7 +6,9 @@ div#main-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    width: 100%;
     max-width: 800px;
+    min-width: 320px;
 }
 
 header {
@@ -16,7 +18,8 @@ header {
     margin: 0 auto;
     position: relative;
     text-align: center;
-    width: 500px;
+    max-width: 320px;
+    width: 100%;
 }
 
 div#brand {
@@ -94,4 +97,9 @@ nav ul li:hover {
 div#inner-container {
     margin: 0 auto;
     padding: 10px 0 10px 0;
+    width: 100%;
+}
+
+ul {
+    margin: 0;
 }

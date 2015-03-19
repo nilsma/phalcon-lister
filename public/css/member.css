@@ -10,6 +10,10 @@ div#items {
     align-items: center;
 }
 
+div#items_container {
+    width: 100%;
+}
+
 div#items div#items_container p {
     margin-bottom: 60px;
 }
@@ -22,9 +26,8 @@ table {
     background-color: #fff;
     border-collapse: separate;
     border-spacing: 0 3px;
-    margin-bottom: 40px;
-    min-width: 360px;
-    width: 100%;
+    margin: 0 auto 30px;
+    min-width: 320px;
 }
 
 div#items div#items_container table tr.item_hover {
@@ -57,8 +60,4 @@ table tr td {
 
 table tr td:nth-child(2) {
     width: 50px;
-}
-
-div#no_lists {
-//    margin-top: 20px;
 }

@@ -29,9 +29,9 @@
                 $editlist_url = '/editlist/list/' . $list->id . '/';
 
                 if($list->owner_id == $user->id) {
-                    $custom_hidden = '<input type="hidden" name="participation" value="owner">' . "\n";
+                    $participation = 'owner';
                 } else {
-                    $custom_hidden = '<input type="hidden" name="participation" value="member">' . "\n";
+                    $participation = 'member';
                 }
 
                 $html .= '<li id="l' . $list->id . '">' . "\n";
@@ -42,7 +42,7 @@
                 $html .= '<a href="/edit/list/' . $list->id . '/" class="btn btn-warning btn-small"><i class="icon-white icon-edit"></i></a>' . "\n";
                 $html .= Phalcon\Tag::form(array("edit/deleteList", "method" => "post", "name" => "delete_list_{$list->id}", "onsubmit" => "return confirm('Delete the list?');")) . "\n";
                 $html .= '<input name="list_to_delete" type="hidden" value="' . $list->id . '">' . "\n";
-                $html .= $custom_hidden . "\n";
+                $html .= '<input type="hidden" name="participation" value="' . $participation . '">' . "\n";
                 $html .= '<label class="btn btn-danger btn-small" for="delete_list_' . $list->id . '"><i class="icon-white icon-remove"></i></label>' . "\n";
                 $html .= '<input class="hidden" type="submit" id="delete_list_' . $list->id . '">' . "\n";
                 $html .= Phalcon\Tag::endForm() . "\n";

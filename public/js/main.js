@@ -228,43 +228,6 @@ function deleteMember(list_id, member_id, callback) {
     xmlhttp.send(params);
 }
 
-function initDeleteList() {
-    if(confirm('Are you sure you want to delete this list?')) {
-        getListIdToDelete(this, function(list_id) {
-            deleteList(list_id, function() {
-                location.reload();
-            });
-        });
-    }
-}
-
-function getListIdToDelete(element, callback) {
-    var list_id = element.parentNode.parentNode.getAttribute('id').substring(1);
-    callback(encodeURIComponent(list_id));
-}
-
-function deleteList(list_id, callback) {
-    var result;
-
-    if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            result = xmlhttp.responseText;
-            callback();
-        }
-    }
-
-    var param = "list_id=".concat(list_id);
-    xmlhttp.open("POST", "../edit/deleteList", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send(param);
-}
-
 function initDeleteItem() {
     getItemIdToDelete(this, function(item_id) {
         getListId(function(list_id) {
@@ -457,9 +420,6 @@ function init() {
     elements = document.getElementsByClassName('delete_item');
     addListeners(elements, initDeleteItem);
 
-    var elements = new Array();
-    elements = document.getElementsByClassName('delete_list');
-    addListeners(elements, initDeleteList);
 }
 
 window.onload = function() {

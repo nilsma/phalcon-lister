@@ -10,15 +10,12 @@ div#invitations ul {
 }
 
 div#invitations ul li {
-    vertical-align: middle;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     padding: 4px 8px;
 }
 
 div#invitations ul li p {
-    align-items: center;
     margin: 0;
 }
 
@@ -29,12 +26,9 @@ span.list_title {
 div#invitations div.holder {
     align-items: center;
     display: flex;
-    flex-direction: row;
 }
 
 div#invitations div.holder > form {
-    align-items: center;
-    vertical-align: middle;
     margin: 0 0 0 10px;
 }
 

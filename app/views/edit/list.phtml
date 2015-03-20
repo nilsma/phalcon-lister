@@ -17,39 +17,4 @@
 
     </div>
 
-    <!--
-    <div id="members">
-        <h3>Members of this list</h3>
-        <div>
-            <?php
-
-            $html = '';
-
-            if(count($members) < 1) {
-
-                $html .= '<p>There are no members to this list yet</p>' . "\n";
-
-            } else {
-
-                $html .= '<table>' . "\n";
-
-                foreach($members as $member) {
-
-                    $html .= '<tr>' . "\n";
-                    $html .= '<td><span id="i' . $member->member_id . '">' . Users::findFirst("id = {$member->member_id}")->username . '</span></td>' . "\n";
-                    $html .= '<td><button class="btn btn-danger btn-small delete_member pull-right"><i class="icon-white icon-remove"></i></button></td>' . "\n";
-                    $html .= '</tr>' . "\n";
-
-                }
-
-                $html .= '</table>' . "\n";
-
-            }
-
-            echo $html;
-
-            ?>
-        </div>
-        -->
-
-    </div>
+</div>

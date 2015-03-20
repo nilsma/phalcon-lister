@@ -1,35 +1,11 @@
+div#edit_list {
+    display: flex;
+    justify-content: center;
+}
+
 div#edit_controls {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin: 5px auto;
-}
-
-div#edit_list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-div#members {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-table {
-    min-width: 360px;
-    width: 100%;
-}
-
-table tr:nth-child(odd) {
-    background-color: #ddd;
-}
-
-table tr td {
-    padding: 4px 8px;
-}
-
-table tr td:nth-child(2) {
-    width: 50px;
 }

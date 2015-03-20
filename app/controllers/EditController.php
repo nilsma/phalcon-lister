@@ -32,11 +32,7 @@ class EditController extends ControllerBase
 
         }
 
-        $lists = Lists::find(array(
-            "conditions" => "owner_id = ?1",
-            "bind" => array(1 => $user->id),
-            "order" => "title"
-        ));
+        $lists = Lists::findLists($user->id);
 
         $this->view->setVar('addListForm', new AddListForm());
         $this->view->setVar('lists', $lists);
@@ -215,6 +211,56 @@ class EditController extends ControllerBase
 
     }
 
+    private function deleteOwnedList($user, $list) {
+
+        $transactionManager = new TransactionManager();
+        $transaction = $transactionManager->get();
+
+        $invitations = Invitations::find(array(
+            "conditions" => "owner_id = ?1 AND list_id = ?2",
+            "bind" => array(1 => $user->id, 2 => $list->id)
+        ));
+
+        $members = Members::find(array(
+            "conditions" => "owner_id = ?1 AND list_id = ?2",
+            "bind" => array(1 => $user->id, 2 => $list->id)
+        ));
+
+        try {
+
+            foreach($invitations as $invitation) {
+                if($invitation->delete() == false) {
+                    $transaction->rollback("Failed invitation delete");
+                }
+            }
+
+            foreach($members as $member) {
+                if($member->delete() == false) {
+                    $transaction->rollback("Failed member delete");
+                }
+            }
+
+            if($list->delete() == false) {
+                $transaction->rollback("Failed list delete");
+            }
+
+            $transaction->commit();
+
+            $this->flash->success('List deleted');
+            $this->response->redirect('edit');
+
+        } catch(Phalcon\Mvc\Model\Transaction\Failed $e) {
+
+            $this->flash->error('Something went wrong when deleting list: ' . $e->getMessage());
+
+        }
+
+    }
+
+    private function deleteMembershipList($user, $list) {
+
+    }
+
     public function deleteListAction() {
 
         if($this->request->isPost()) {
@@ -222,47 +268,63 @@ class EditController extends ControllerBase
             if($this->session->has("user")) {
                 $user = unserialize($this->session->get("user"));
 
+                /*
                 $transactionManager = new TransactionManager();
                 $transaction = $transactionManager->get();
+                */
 
-                $list_id = $this->request->getPost('list_id');
+                $list_id = $this->request->getPost('list_to_delete');
                 $list = Lists::findFirst("id = {$list_id}");
+                $participation = $this->request->getPost('participation');
 
-                $invitations = Invitations::find(array(
-                    "conditions" => "owner_id = ?1 AND list_id = ?2",
-                    "bind" => array(1 => $user->id, 2 => $list_id)
-                ));
+                if($participation == "owner") {
 
-                $members = Members::find(array(
-                    "conditions" => "owner_id = ?1 AND list_id = ?2",
-                    "bind" => array(1 => $user->id, 2 => $list_id)
-                ));
+                    $this->deleteOwnedList($user, $list);
 
-                try {
+                    /*
+                    $invitations = Invitations::find(array(
+                        "conditions" => "owner_id = ?1 AND list_id = ?2",
+                        "bind" => array(1 => $user->id, 2 => $list_id)
+                    ));
 
-                    foreach($invitations as $invitation) {
-                        if($invitation->delete() == false) {
-                            $transaction->rollback("Failed invitation delete");
+                    $members = Members::find(array(
+                        "conditions" => "owner_id = ?1 AND list_id = ?2",
+                        "bind" => array(1 => $user->id, 2 => $list_id)
+                    ));
+
+                    try {
+
+                        foreach($invitations as $invitation) {
+                            if($invitation->delete() == false) {
+                                $transaction->rollback("Failed invitation delete");
+                            }
                         }
-                    }
 
-                    foreach($members as $member) {
-                        if($member->delete() == false) {
-                            $transaction->rollback("Failed member delete");
+                        foreach($members as $member) {
+                            if($member->delete() == false) {
+                                $transaction->rollback("Failed member delete");
+                            }
                         }
+
+                        if($list->delete() == false) {
+                            $transaction->rollback("Failed list delete");
+                        }
+
+                        $transaction->commit();
+
+                        $this->flash->success('List deleted');
+                        $this->response->redirect('edit');
+
+                    } catch(Phalcon\Mvc\Model\Transaction\Failed $e) {
+
+                        $this->flash->error('Something went wrong when deleting list: ' . $e->getMessage());
+
                     }
+                    */
 
-                    if($list->delete() == false) {
-                        $transaction->rollback("Failed list delete");
-                    }
+                } else {
 
-                    $transaction->commit();
-
-                    $this->flash->success('List deleted');
-
-                } catch(Phalcon\Mvc\Model\Transaction\Failed $e) {
-
-                    $this->flash->error('Something went wrong when deleting list: ' . $e->getMessage());
+                    $this->deleteMembershipList($user, $list);
 
                 }
 

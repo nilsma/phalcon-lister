@@ -26,16 +26,63 @@
       <file leaf-file-name="IndexController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="33" selection-start="135" selection-end="135" vertical-scroll-proportion="-1.3571428" vertical-offset="114" max-vertical-offset="817">
+            <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="-0.0" vertical-offset="572" max-vertical-offset="1118">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="319" column="5" selection-start="9197" selection-end="9197" vertical-scroll-proportion="0.6576271" vertical-offset="5673" max-vertical-offset="8968">
+            <state line="260" column="0" selection-start="7456" selection-end="7456" vertical-scroll-proportion="0.0" vertical-offset="6564" max-vertical-offset="12272">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/EditController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="266" column="0" selection-start="7720" selection-end="7720" vertical-scroll-proportion="-6.678571" vertical-offset="6729" max-vertical-offset="13286">
+              <folding>
+                <element signature="e#7#71#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.phtml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/edit/index.phtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="18" selection-start="2777" selection-end="2777" vertical-scroll-proportion="-11.178572" vertical-offset="1091" max-vertical-offset="2262">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/edit.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1300">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editlist.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/editlist.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.35254237" vertical-offset="0" max-vertical-offset="590">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="invitations.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/invitations.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="1" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1092">
               <folding />
             </state>
           </provider>
@@ -66,7 +113,6 @@
         <option value="$PROJECT_DIR$/public/css/index.css" />
         <option value="$PROJECT_DIR$/app/controllers/RegisterController.php" />
         <option value="$PROJECT_DIR$/public/css/profile.css" />
-        <option value="$PROJECT_DIR$/public/css/editlist.css" />
         <option value="$PROJECT_DIR$/app/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/app/controllers/LogoutController.php" />
         <option value="$PROJECT_DIR$/app/models/Invitations.php" />
@@ -85,18 +131,12 @@
         <option value="$PROJECT_DIR$/app/views/editlist/index.phtml" />
         <option value="$PROJECT_DIR$/app/views/profile/index.phtml" />
         <option value="$PROJECT_DIR$/app/controllers/EditlistController.php" />
-        <option value="$PROJECT_DIR$/app/views/edit/list.phtml" />
-        <option value="$PROJECT_DIR$/app/views/edit/index.phtml" />
         <option value="$PROJECT_DIR$/public/css/users.css" />
         <option value="$PROJECT_DIR$/app/views/partials/memberHeader.phtml" />
         <option value="$PROJECT_DIR$/app/views/edit/users.phtml" />
         <option value="$PROJECT_DIR$/app/controllers/MemberController.php" />
-        <option value="$PROJECT_DIR$/app/views/invitations/index.phtml" />
-        <option value="$PROJECT_DIR$/public/css/edit.css" />
-        <option value="$PROJECT_DIR$/public/css/invitations.css" />
         <option value="$PROJECT_DIR$/app/config/loader.php" />
         <option value="$PROJECT_DIR$/app/config/services.php" />
-        <option value="$PROJECT_DIR$/app/controllers/EditController.php" />
         <option value="$PROJECT_DIR$/app/controllers/InvitationsController.php" />
         <option value="$PROJECT_DIR$/app/controllers/ProfileController.php" />
         <option value="$PROJECT_DIR$/app/forms/AddItemForm.php" />
@@ -110,6 +150,13 @@
         <option value="$PROJECT_DIR$/app/forms/RegisterForm.php" />
         <option value="$PROJECT_DIR$/app/models/Lists.php" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/app/views/invitations/index.phtml" />
+        <option value="$PROJECT_DIR$/app/views/edit/index.phtml" />
+        <option value="$PROJECT_DIR$/app/controllers/EditController.php" />
+        <option value="$PROJECT_DIR$/public/css/invitations.css" />
+        <option value="$PROJECT_DIR$/public/css/edit.css" />
+        <option value="$PROJECT_DIR$/app/views/edit/list.phtml" />
+        <option value="$PROJECT_DIR$/public/css/editlist.css" />
       </list>
     </option>
   </component>
@@ -211,60 +258,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="forms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phalcon-lister" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,13 +375,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="33" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="817">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437" />
@@ -454,16 +440,6 @@
         <state line="3" column="27" selection-start="125" selection-end="125" vertical-scroll-proportion="-1.6071428" vertical-offset="12" max-vertical-offset="589" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit/index.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="8" selection-start="892" selection-end="892" vertical-scroll-proportion="-6.535714" vertical-offset="387" max-vertical-offset="1045" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/edit/list.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="74" selection-start="740" selection-end="740" vertical-scroll-proportion="-7.25" vertical-offset="44" max-vertical-offset="1140" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/memberHeader.phtml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="82" selection-start="715" selection-end="715" vertical-scroll-proportion="0.50711745" vertical-offset="0" max-vertical-offset="562" />
@@ -482,21 +458,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/edit/users.phtml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="16" selection-start="1144" selection-end="1144" vertical-scroll-proportion="-6.035714" vertical-offset="477" max-vertical-offset="1083" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/invitations/index.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="40" selection-start="879" selection-end="879" vertical-scroll-proportion="-7.464286" vertical-offset="342" max-vertical-offset="1995" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/edit.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="14" selection-start="598" selection-end="598" vertical-scroll-proportion="0.5813559" vertical-offset="341" max-vertical-offset="969" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/invitations.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="14" selection-start="378" selection-end="378" vertical-scroll-proportion="0.1661017" vertical-offset="301" max-vertical-offset="931" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config.php">
@@ -522,11 +483,6 @@
     <entry file="file://$PROJECT_DIR$/app/config/services.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="52" selection-start="301" selection-end="301" vertical-scroll-proportion="0.27046263" vertical-offset="0" max-vertical-offset="2432" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/EditController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="439" column="5" selection-start="13094" selection-end="13094" vertical-scroll-proportion="0.8306011" vertical-offset="7885" max-vertical-offset="8531" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/InvitationsController.php">
@@ -604,11 +560,6 @@
         <state line="109" column="36" selection-start="2864" selection-end="2864" vertical-scroll-proportion="0.49288255" vertical-offset="1642" max-vertical-offset="2204" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Lists.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="53" selection-start="522" selection-end="522" vertical-scroll-proportion="0.44626594" vertical-offset="325" max-vertical-offset="969" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Invitations.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.21708184" vertical-offset="122" max-vertical-offset="684" />
@@ -629,16 +580,74 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.21708184" vertical-offset="122" max-vertical-offset="684" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Lists.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="53" selection-start="522" selection-end="522" vertical-scroll-proportion="0.43594307" vertical-offset="325" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="33" selection-start="135" selection-end="135" vertical-scroll-proportion="-1.3571428" vertical-offset="114" max-vertical-offset="817">
+        <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0" vertical-offset="572" max-vertical-offset="1118">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="319" column="5" selection-start="9197" selection-end="9197" vertical-scroll-proportion="0.6576271" vertical-offset="5673" max-vertical-offset="8968">
+        <state line="260" column="0" selection-start="7456" selection-end="7456" vertical-scroll-proportion="0.0" vertical-offset="6564" max-vertical-offset="12272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/EditController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="266" column="0" selection-start="7720" selection-end="7720" vertical-scroll-proportion="-6.678571" vertical-offset="6729" max-vertical-offset="13286">
+          <folding>
+            <element signature="e#7#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invitations/index.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="118" selection-start="1628" selection-end="1628" vertical-scroll-proportion="0.712204" vertical-offset="597" max-vertical-offset="2678">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/invitations.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="1" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1092">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit/list.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="569" selection-end="569" vertical-scroll-proportion="0.33269963" vertical-offset="111" max-vertical-offset="650">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/edit/index.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="18" selection-start="2777" selection-end="2777" vertical-scroll-proportion="-11.178572" vertical-offset="1091" max-vertical-offset="2262">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/edit.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/editlist.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.35254237" vertical-offset="0" max-vertical-offset="590">
           <folding />
         </state>
       </provider>

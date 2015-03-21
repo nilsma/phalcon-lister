@@ -26,7 +26,7 @@
       <file leaf-file-name="IndexController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="-0.5714286" vertical-offset="556" max-vertical-offset="1118">
+            <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1118">
               <folding />
             </state>
           </provider>
@@ -55,7 +55,7 @@
       <file leaf-file-name="index.phtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/edit/index.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="46" selection-start="1052" selection-end="1052" vertical-scroll-proportion="-4.678571" vertical-offset="727" max-vertical-offset="1768">
+            <state line="33" column="46" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0" vertical-offset="727" max-vertical-offset="1768">
               <folding />
             </state>
           </provider>
@@ -562,49 +562,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/edit/list.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="569" selection-end="569" vertical-scroll-proportion="0.33269963" vertical-offset="111" max-vertical-offset="650">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="569" selection-end="569" vertical-scroll-proportion="0.33269963" vertical-offset="111" max-vertical-offset="650" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/invitations.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="1" selection-start="552" selection-end="552" vertical-scroll-proportion="0.9118644" vertical-offset="398" max-vertical-offset="1092">
-          <folding />
-        </state>
+        <state line="36" column="1" selection-start="552" selection-end="552" vertical-scroll-proportion="0.9118644" vertical-offset="398" max-vertical-offset="1092" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/editlist.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.35254237" vertical-offset="0" max-vertical-offset="590">
-          <folding />
-        </state>
+        <state line="8" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.35254237" vertical-offset="0" max-vertical-offset="590" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/edit.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1300">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1300" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invitations/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2678">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2678" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/edit/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="46" selection-start="1052" selection-end="1052" vertical-scroll-proportion="-4.678571" vertical-offset="727" max-vertical-offset="1768">
+        <state line="33" column="46" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0" vertical-offset="727" max-vertical-offset="1768">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="-0.5714286" vertical-offset="556" max-vertical-offset="1118">
+        <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1118">
           <folding />
         </state>
       </provider>

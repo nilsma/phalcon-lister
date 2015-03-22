@@ -52,10 +52,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.3677966" vertical-offset="9559" max-vertical-offset="12818">
+            <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.0" vertical-offset="9559" max-vertical-offset="12818">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="member.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/css/member.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="32" selection-start="566" selection-end="566" vertical-scroll-proportion="0.79322034" vertical-offset="234" max-vertical-offset="2210">
               <folding />
             </state>
           </provider>
@@ -90,7 +99,6 @@
         <option value="$PROJECT_DIR$/app/controllers/LogoutController.php" />
         <option value="$PROJECT_DIR$/app/models/Invitations.php" />
         <option value="$PROJECT_DIR$/app/models/Users.php" />
-        <option value="$PROJECT_DIR$/public/css/member.css" />
         <option value="$PROJECT_DIR$/app/controllers/AboutController.php" />
         <option value="$PROJECT_DIR$/public/css/about.css" />
         <option value="$PROJECT_DIR$/app/views/about/index.phtml" />
@@ -130,6 +138,7 @@
         <option value="$PROJECT_DIR$/app/views/partials/items.phtml" />
         <option value="$PROJECT_DIR$/app/controllers/MemberController.php" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/public/css/member.css" />
       </list>
     </option>
   </component>
@@ -401,11 +410,6 @@
         <state line="15" column="69" selection-start="901" selection-end="901" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="437" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/member.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="2" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="721" max-vertical-offset="1311" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="17" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.3542373" vertical-offset="1178" max-vertical-offset="1938" />
@@ -640,7 +644,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.3677966" vertical-offset="9559" max-vertical-offset="12818">
+        <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.0" vertical-offset="9559" max-vertical-offset="12818">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/member.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="32" selection-start="566" selection-end="566" vertical-scroll-proportion="0.79322034" vertical-offset="234" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>

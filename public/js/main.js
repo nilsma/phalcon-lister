@@ -362,6 +362,67 @@ function acceptInvited(list_id, callback) {
     xmlhttp.send(param);
 }
 
+setInterval(
+    function() {
+        updateItems(function() {
+            init();
+        });
+    }, 5000
+);
+
+function updateItems(callback) {
+    getWorkingListId(function(working_list_id) {
+        getUpdatedTableHTML(working_list_id, function(html) {
+            var items_container = document.getElementById('items_container');
+            insertHTML(items_container, html, function() {
+                callback();
+            });
+        });
+    });
+}
+
+function getWorkingListId(callback) {
+    var working_list_id = document.getElementById('working_list').value;
+    callback(working_list_id);
+}
+
+function getUpdatedTableHTML(working_list_id, callback) {
+    var result;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            result = xmlhttp.responseText;
+            callback(result);
+        }
+    }
+
+    var param = "list_id=".concat(working_list_id);
+    xmlhttp.open("POST", "/member/getTableHTML", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send(param);
+}
+
+/*
+setInterval(
+    function() {
+        updateItems(function() {
+            init();
+        });
+    }, 3000
+);
+*/
+
+function insertHTML(element, html, callback) {
+    element.innerHTML = html;
+    callback();
+}
+
 function addListeners(elements, funcName) {
     for(var i = 0; i < elements.length; i++) {
         if(elements[i] !== null) {

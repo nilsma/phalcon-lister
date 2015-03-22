@@ -19,15 +19,12 @@ class MemberController extends ControllerBase
         if($this->session->has("user") && $this->session->get("auth")) {
 
             $user = unserialize($this->session->get("user"));
-
             $user_lists = Lists::findLists($user->id);
 
             if(count($user_lists) > 0) {
 
                 $this->view->disable();
-
                 $list = $this->getCurrentList($user);
-
                 $this->response->redirect('member/list/' . $list->id . '/');
 
             } else {
@@ -43,11 +40,9 @@ class MemberController extends ControllerBase
 
             }
 
-
         } else {
 
             $this->flash->error('You have to login first');
-
             return $this->response->redirect('');
 
         }
@@ -57,13 +52,9 @@ class MemberController extends ControllerBase
     private function getCurrentList($user) {
 
         if($user->last_list != NULL) {
-
             $current_list = $this->getUserLastList($user);
-
         } else {
-
             $current_list = $this->getUserDefaultList($user);
-
         }
 
         return $current_list;
@@ -75,13 +66,9 @@ class MemberController extends ControllerBase
         $users_lists = Lists::findLists($user->id);
 
         if(count($users_lists) > 0) {
-
             $list = $users_lists[0];
-
         } else {
-
             $list = new Lists();
-
         }
 
         return $list;
@@ -97,13 +84,9 @@ class MemberController extends ControllerBase
         ));
 
         if(count($last_lists) > 0 && ($last_lists[0]) && (($last_lists[0]->owner_id == $user->id) || $this->validateMembership($last_lists[0], $user))) {
-
             $current_list = $last_lists[0];
-
         } else {
-
             $current_list = $this->getUserDefaultList($user);
-
         }
 
         return $current_list;
@@ -121,9 +104,7 @@ class MemberController extends ControllerBase
         ));
 
         if(count($memberships) > 0) {
-
             $isMember = true;
-
         }
 
         return $isMember;
@@ -141,9 +122,7 @@ class MemberController extends ControllerBase
         ));
 
         if(count($ownerships) > 0) {
-
             $isMember = true;
-
         }
 
         return $isMember;
@@ -164,7 +143,6 @@ class MemberController extends ControllerBase
             }
 
             $filter = new Filter();
-
             $list = new Lists();
 
             $list->id = NULL;
@@ -191,6 +169,50 @@ class MemberController extends ControllerBase
 
     }
 
+    public function getTableHTMLAction() {
+
+        $this->view->disable();
+
+        if($this->session->has("user") && $this->session->get("auth")) {
+
+            $user = unserialize($this->session->get("user"));
+            $list = Lists::findFirst("id = {$this->request->get('list_id')}");
+
+            if($this->validateOwnership($list, $user) || $this->validateMembership($list, $user)) {
+
+                $view = new Phalcon\Mvc\View();
+                $view->setViewsDir("../app/views/");
+
+                $user_lists = Lists::findLists($user->id);
+                $items = Items::find(array("conditions" => "list_id = ?1", "bind" => array(1 => $list->id)));
+
+                $view->setVar("user_lists", $user_lists);
+                $view->setVar("items", $items);
+
+                $view->start();
+
+                $view->render("partials", "items");
+
+                $view->finish();
+
+                echo $view->getContent();
+
+            } else {
+
+                $this->flash->error('You have to login first');
+                return $this->response->redirect('');
+
+            }
+
+        } else {
+
+            $this->flash->error('You have to login first');
+            return $this->response->redirect('');
+
+        }
+
+    }
+
     public function listAction() {
 
         $this->assets->addCss('css/main.css');
@@ -201,10 +223,10 @@ class MemberController extends ControllerBase
         if($this->session->has("user") && $this->session->get("auth")) {
 
             $user = unserialize($this->session->get("user"));
-
             $params = $this->dispatcher->getParams();
 
             if(count($params) > 0) {
+
                 $list_id = $params[0];
 
                 $candidates = Lists::find(array(
@@ -262,8 +284,11 @@ class MemberController extends ControllerBase
             }
 
         } else {
+
             $this->flash->error('You have to login first');
+
             return $this->response->redirect('');
+
         }
 
     }
@@ -299,9 +324,9 @@ class MemberController extends ControllerBase
 
         if($this->session->has("user") && $this->session->get("auth") == true) {
 
-            $filter = new \Phalcon\Filter();
-
             $user = unserialize($this->session->get("user"));
+
+            $filter = new \Phalcon\Filter();
 
             $list_id = $this->request->getPost('working_list');
             $item_name = $filter->sanitize($this->request->getPost('item_name'), "string");
@@ -320,9 +345,7 @@ class MemberController extends ControllerBase
                 $item->tapped = false;
 
                 if($list->owner_id = $user->id || $member) {
-
                     $item->save();
-
                 }
 
                 $this->response->redirect('member/');
@@ -335,8 +358,10 @@ class MemberController extends ControllerBase
             }
 
         } else {
+
             $this->flash->error('Something went wrong fetching user');
             $this->response->redirect('');
+
         }
 
     }

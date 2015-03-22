@@ -23,39 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MemberController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/MemberController.php">
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="47" selection-start="5288" selection-end="5288" vertical-scroll-proportion="-10.25" vertical-offset="4523" max-vertical-offset="10504">
-              <folding>
-                <marker date="1427011366306" expanded="true" signature="10794:10834" placeholder="UPDATE items..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="items.phtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/partials/items.phtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="20" selection-end="20" vertical-scroll-proportion="-2.8214285" vertical-offset="25" max-vertical-offset="1014">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.phtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/member/index.phtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="23" selection-start="822" selection-end="822" vertical-scroll-proportion="-9.857142" vertical-offset="530" max-vertical-offset="1352">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.0" vertical-offset="9559" max-vertical-offset="12818">
+            <state line="75" column="0" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="1733" max-vertical-offset="3354">
               <folding />
             </state>
           </provider>
@@ -64,7 +35,7 @@
       <file leaf-file-name="member.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/member.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="32" selection-start="566" selection-end="566" vertical-scroll-proportion="0.79322034" vertical-offset="234" max-vertical-offset="2210">
+            <state line="45" column="20" selection-start="864" selection-end="864" vertical-scroll-proportion="0.3322034" vertical-offset="974" max-vertical-offset="2210">
               <folding />
             </state>
           </provider>
@@ -102,7 +73,6 @@
         <option value="$PROJECT_DIR$/app/controllers/AboutController.php" />
         <option value="$PROJECT_DIR$/public/css/about.css" />
         <option value="$PROJECT_DIR$/app/views/about/index.phtml" />
-        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/app/config/config.php" />
         <option value="$PROJECT_DIR$/app/views/register/index.phtml" />
         <option value="$PROJECT_DIR$/app/views/index/index.phtml" />
@@ -138,6 +108,7 @@
         <option value="$PROJECT_DIR$/app/views/partials/items.phtml" />
         <option value="$PROJECT_DIR$/app/controllers/MemberController.php" />
         <option value="$PROJECT_DIR$/public/js/main.js" />
+        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/public/css/member.css" />
       </list>
     </option>
@@ -410,11 +381,6 @@
         <state line="15" column="69" selection-start="901" selection-end="901" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="437" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="17" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.3542373" vertical-offset="1178" max-vertical-offset="1938" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/register/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="36" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="38" max-vertical-offset="361" />
@@ -621,37 +587,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/MemberController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="47" selection-start="5288" selection-end="5288" vertical-scroll-proportion="-10.25" vertical-offset="4523" max-vertical-offset="10504">
+        <state line="189" column="47" selection-start="5288" selection-end="5288" vertical-scroll-proportion="0.5227687" vertical-offset="4523" max-vertical-offset="10504">
           <folding>
-            <marker date="1427011366306" expanded="true" signature="10794:10834" placeholder="UPDATE items..." />
+            <marker date="1427011366306" expanded="true" signature="-1:-1" placeholder="UPDATE items..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/partials/items.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="20" selection-end="20" vertical-scroll-proportion="-2.8214285" vertical-offset="25" max-vertical-offset="1014">
+        <state line="4" column="0" selection-start="20" selection-end="20" vertical-scroll-proportion="0.143898" vertical-offset="25" max-vertical-offset="1014">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/member/index.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="23" selection-start="822" selection-end="822" vertical-scroll-proportion="-9.857142" vertical-offset="530" max-vertical-offset="1352">
+        <state line="31" column="23" selection-start="822" selection-end="822" vertical-scroll-proportion="0.4911032" vertical-offset="530" max-vertical-offset="1352">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.0" vertical-offset="9559" max-vertical-offset="12818">
+        <state line="376" column="12" selection-start="10784" selection-end="10784" vertical-scroll-proportion="0.3677966" vertical-offset="9559" max-vertical-offset="12818">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="0" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="1733" max-vertical-offset="3354">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/member.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="32" selection-start="566" selection-end="566" vertical-scroll-proportion="0.79322034" vertical-offset="234" max-vertical-offset="2210">
+        <state line="45" column="20" selection-start="864" selection-end="864" vertical-scroll-proportion="0.3322034" vertical-offset="974" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>

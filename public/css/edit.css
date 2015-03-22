@@ -1,6 +1,11 @@
 div#add_list_form {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-flex-direction: row;
 }
 
 div#add_list_form input[type="submit"] {
@@ -17,10 +22,15 @@ div#lists ul li {
     display: flex;
     justify-content: space-between;
     padding: 4px 8px;
+
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
 }
 
 div.holder {
     display: flex;
+    display: -webkit-flex;
 }
 
 div.holder form {

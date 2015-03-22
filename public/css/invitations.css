@@ -2,6 +2,10 @@ div#invitations {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-align-items: center;
 }
 
 div#invitations ul {
@@ -13,6 +17,9 @@ div#invitations ul li {
     display: flex;
     justify-content: space-between;
     padding: 4px 8px;
+
+    display: -webkit-flex;
+    -webkit-justify-content: space-between;
 }
 
 div#invitations ul li p {
@@ -26,6 +33,9 @@ span.list_title {
 div#invitations div.holder {
     align-items: center;
     display: flex;
+
+    display: -webkit-flex;
+    -webkit-align-items: center;
 }
 
 div#invitations div.holder > form {

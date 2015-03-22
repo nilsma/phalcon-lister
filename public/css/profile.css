@@ -3,6 +3,9 @@ div#change_password form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-align-items: center;
 }
 
 div#change_email,
@@ -10,6 +13,9 @@ div#change_email form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-align-items: center;
 }
 
 div#change_password input:last-child,

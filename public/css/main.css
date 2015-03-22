@@ -4,15 +4,18 @@ body {
 
 div#main-container {
     display: flex;
+    display: -webkit-box;
     flex-direction: column;
+    -webkit-flex-direction: column;
+    -webkit-box-orient: column;
     margin: 0 auto;
-    width: 100%;
     max-width: 800px;
     min-width: 320px;
 }
 
 header {
     display: flex;
+    display: -webkit-box;
     flex-direction: column;
     height: 100px;
     margin: 0 auto;
@@ -23,8 +26,13 @@ header {
 }
 
 div#brand {
+    width: 100%;
+
     display: flex;
     flex-direction: row;
+
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
 }
 
 div#welcome {
@@ -63,8 +71,8 @@ nav {
 }
 
 nav ul {
-    border: 1px solid black;
     border: 1px solid #aaa;
+    box-shadow: 1px 3px 5px #ddd;
     display: none;
     list-style: none;
     position: absolute;
@@ -72,9 +80,15 @@ nav ul {
 }
 
 nav ul li {
+    display: flex;
+    align-items: center;
+
+    display: -webkit-flex;
+    -webkit-align-items: center;
+
     background-color: white;
     border-bottom: 1px solid #aaa;
-    font-size: 14px;
+    padding: 2px 4px;
 }
 
 nav ul li:last-child {
@@ -102,4 +116,9 @@ div#inner-container {
 
 ul {
     margin: 0;
+}
+
+li,
+table tr {
+    font-size: 16px;
 }

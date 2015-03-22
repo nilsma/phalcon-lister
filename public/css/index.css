@@ -1,18 +1,29 @@
 div.login_form {
-    align-items: center;
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
+    align-items: center;
+    -webkit-align-items: center;
 }
 
 form {
     display: flex;
     flex-direction: column;
+
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
 }
 
 div#login_controls {
-    margin: 20px auto;
-}
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-align-items: center;
 
-div#login_controls input {
-    margin-right: 80px;
+    -webkit-justify-content: space-between;
+    margin: 15px auto;
+    width: 80%;
 }
